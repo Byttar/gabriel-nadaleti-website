@@ -5,6 +5,7 @@
   --color-primary: #00ff88;
   --color-primarydim: #004022;
   --animate-type: type 1s step-end infinite;
+  --breakpoint-md: 880px;
 
   @keyframes type {
     50% {
@@ -40,7 +41,7 @@
 }
 
 * {
-  font-family: "Monospace", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 
 body {

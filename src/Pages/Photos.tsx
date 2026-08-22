@@ -90,11 +90,11 @@ const PhotosPage: React.FC = () => {
             className={`relative flex-col-reverse md:flex-row opacity-0 justify-between outline-none flex bg-black border border-dashed border-stone-600 rounded-lg shadow-lg overflow-hidden ${showModal ? modalAnim : ""}`}
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex sm:max-w-full md:max-w-97.5 flex-col items-center gap-3 p-5 sm:p-6 w-full md:border-r border-dashed border-stone-600 min-w-55">
+            <div className="flex pt-0 md:pt-5 sm:max-w-full md:max-w-97.5 flex-col items-center gap-3 p-5 sm:p-6 w-full md:border-r border-dashed border-stone-600 min-w-55">
               <h2 className="text-white text-lg font-semibold leading-snug">
                 {selectedPhoto.title || PLACEHOLDER_TITLE}
               </h2>
-              <p id="photo-content" className="text-stone-400 pr-2 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
+              <p id="photo-content" className="text-stone-400 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
                 {selectedPhoto.description || PLACEHOLDER_DESCRIPTION}
               </p>
 
@@ -102,7 +102,7 @@ const PhotosPage: React.FC = () => {
               {selectedPhoto.filename}
               </p>
             </div>
-            <div className="flex items-center justify-center bg-stone-950 p-4 max-w-[65%] min-h-0 shrink-1">
+            <div className="flex items-center justify-center bg-stone-950 p-4 sm:pt-4 md:pt-6 sm:m-auto sm:w-[80%] md:max-w-[65%] min-h-0 shrink-1">
               <img
                 src={assetUrl(selectedPhoto.path)}
                 alt={selectedPhoto.title || PLACEHOLDER_TITLE}

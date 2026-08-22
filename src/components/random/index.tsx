@@ -49,7 +49,7 @@ const Random: React.FC = () => {
       <div className="border-t border-stone-800 pt-3">
         <div className="flex flex-col gap-1 text-xs text-stone-400 leading-relaxed">
           {chosenIndices.map((idx) => (
-            <div key={randomItems[idx]} className="flex items-start gap-2">
+            <div key={randomItems[idx]} className="flex-col md:flex-row flex items-start gap-2">
               <a
                 className="hover:underline cursor-pointer select-none"
                 onClick={() => handleClick(idx)}
