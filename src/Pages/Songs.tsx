@@ -3,6 +3,7 @@ import Code from "../components/code";
 import SessionNav from "../components/sessionNav";
 import Visual from "../components/audioplayer/visual"; // Import the visual component
 import { useLocation, useNavigate } from "react-router";
+import { assetUrl } from "../utils/loadAsset";
 
 const songs = [
   {
@@ -178,7 +179,7 @@ const SongsPage: React.FC = () => {
             <audio
               id="my-audio"
               ref={audioRef}
-              src={songs[selectedSongIdx].src}
+              src={assetUrl(songs[selectedSongIdx].src)}
               preload="metadata"
               onLoadedMetadata={handleLoadedMetadata}
             />

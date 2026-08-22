@@ -3,6 +3,7 @@ import Code from "../../code";
 import photos from "./data/photos.json"
 import SessionNav from "../../sessionNav";
 import { Link } from "react-router";
+import { assetUrl } from "../../../utils/loadAsset";
 
 const Photos: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const Photos: React.FC = () => {
           <Link to={`/photos/${photo.id}`}>
             <img
               key={idx}
-              src={photo.path}
+              src={assetUrl(photo.path)}
               alt={photo.title || `Foto ${idx + 1}`}
               title={photo.title}
               className="rounded-sm object-cover w-full aspect-square"

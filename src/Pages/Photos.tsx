@@ -3,6 +3,7 @@ import Code from "../components/code";
 import photos from "../components/content/photos/data/photos.json";
 import SessionNav from "../components/sessionNav";
 import { useNavigate, useParams } from "react-router";
+import { assetUrl } from "../utils/loadAsset";
 
 const modalAnim = "animate-fade-in-scale";
 
@@ -63,7 +64,7 @@ const PhotosPage: React.FC = () => {
           {photos.map((photo: any, idx: number) => (
             <img
               key={idx}
-              src={photo.path}
+              src={assetUrl(photo.path)}
               alt={photo.title || `Foto ${idx + 1}`}
               title={photo.title}
               className="rounded-sm object-cover w-full aspect-square cursor-pointer"
@@ -103,7 +104,7 @@ const PhotosPage: React.FC = () => {
             </div>
             <div className="flex items-center justify-center bg-stone-950 p-4 max-w-[65%] min-h-0 shrink-1">
               <img
-                src={selectedPhoto.path}
+                src={assetUrl(selectedPhoto.path)}
                 alt={selectedPhoto.title || PLACEHOLDER_TITLE}
                 className="max-h-[70vh] m-auto max-w-full object-contain rounded-md"
               />
