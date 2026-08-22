@@ -27,7 +27,7 @@ const PhotosPage: React.FC = () => {
   useEffect(() => {
     const currentPhoto = photos.find(photo => photo.id.toString() === photoid);
     setShowModal(true);
-    setSelectedPhoto(currentPhoto);
+    setSelectedPhoto(currentPhoto as typeof photos[0]);
   }, [photoid]);
 
   const closeModal = () => {
