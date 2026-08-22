@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>gabriel.log</title>
+
+  <style>
+    :root {
+      --bg: #000;
+      --text: #f5f5f5;
+      --muted: #777;
+      --border: #292929;
+      --accent: #00ff88;
+      --accent-dim: #003d22;
+      --card: #080808;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Courier New", Courier, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(900px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    header {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .logo::before {
+      content: "> ";
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    /* INTRO */
+
+    .intro {
+      padding: 90px 0 70px;
+    }
+
+    .terminal-line {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .terminal-line span {
+      color: var(--accent);
+    }
+
+    .intro h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.1;
+      margin: 0 0 25px;
+      letter-spacing: -2px;
+    }
+
+    .intro p {
+      max-width: 650px;
+      color: #aaa;
+      margin: 0;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 17px;
+      background: var(--accent);
+      margin-left: 5px;
+      vertical-align: -2px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* CURRENTLY */
+
+    .currently {
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 20px;
+      margin-bottom: 70px;
+    }
+
+    .currently-title {
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .currently-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .currently-item {
+      color: var(--muted);
+    }
+
+    .currently-item strong {
+      display: block;
+      color: var(--text);
+      font-weight: normal;
+      margin-top: 3px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      margin-bottom: 75px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .section-number {
+      color: var(--accent);
+    }
+
+    .section-line {
+      height: 1px;
+      background: var(--border);
+      flex: 1;
+    }
+
+    /* POSTS */
+
+    .post {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 25px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    .post-date {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .post-title {
+      font-size: 15px;
+      margin: 0 0 7px;
+    }
+
+    .post-description {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .tags {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .tag {
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      font-size: 11px;
+    }
+
+    .tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* MUSIC */
+
+    .track {
+      display: grid;
+      grid-template-columns: 45px 1fr auto;
+      align-items: center;
+      gap: 15px;
+      padding: 16px 12px;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      background: var(--card);
+    }
+
+    .track:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .play {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+
+    .track:hover {
+      background: #0d0d0d;
+    }
+
+    .track-name {
+      font-size: 14px;
+    }
+
+    .track-artist {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .track-duration {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .music-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    /* PHOTOS */
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .photo {
+      aspect-ratio: 1;
+      background: #111;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: grayscale(100%);
+      opacity: 0.85;
+      transition: 0.2s;
+    }
+
+    .photo:hover img {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    /* RANDOM */
+
+    .random-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .random-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      color: #aaa;
+    }
+
+    .random-item::before {
+      content: "↳ ";
+      color: var(--accent);
+    }
+
+    .random-item:hover {
+      color: var(--text);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0 60px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    footer span {
+      color: var(--accent);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 650px) {
+
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      header {
+        height: 65px;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      nav a:nth-child(3),
+      nav a:nth-child(4) {
+        display: none;
+      }
+
+      .intro {
+        padding: 65px 0 50px;
+      }
+
+      .currently-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .post {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      .photos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+
+    <header>
+      <a href="/" class="logo">gabriel.log</a>
+
+      <nav>
+        <a href="#posts">posts</a>
+        <a href="#music">music</a>
+        <a href="#photos">photos</a>
+        <a href="#random">random</a>
+      </nav>
+    </header>
+
+
+    <!-- INTRO -->
+
+    <div class="intro">
+
+      <div class="terminal-line">
+        <span>gabriel@internet</span>:~$ whoami
+      </div>
+
+      <h1>
+        Gabriel Nadaleti<span class="cursor"></span>
+      </h1>
+
+      <p>
+        Developer, music producer, occasional photographer.
+        This is my little corner of the internet where I write
+        about things I'm building, making, listening to and thinking about.
+      </p>
+
+    </div>
+
+
+    <!-- CURRENTLY -->
+
+    <div class="currently">
+
+      <div class="currently-title">
+        // currently
+      </div>
+
+      <div class="currently-grid">
+
+        <div class="currently-item">
+          listening
+          <strong>something loud</strong>
+        </div>
+
+        <div class="currently-item">
+          building
+          <strong>something interesting</strong>
+        </div>
+
+        <div class="currently-item">
+          reading
+          <strong>something I probably won't finish</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- POSTS -->
+
+    <section id="posts">
+
+      <div class="section-title">
+        <span class="section-number">01</span>
+        <strong>POSTS</strong>
+        <div class="section-line"></div>
+      </div>
+
+      <article class="post">
+
+        <div class="post-date">
+          2026.08.16
+        </div>
+
+        <div>
+          <h3 class="post-title">
+            Things I learned building my latest project
+          </h3>
+
+          <p class="post-description">
+            A few notes about architecture, mistakes I made,
+            and things I'd do differently next time.
+          </p>
+
+          <div class="tags">
+            <span class="tag">coding</span>
+            <span class="tag">architecture</span>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="post">
+
+        <div class="post-date">
+          2026.08.10
+        </div>
+
+        <div>
+          <h3 class="post-title">
+            Why I like making things from scratch
+          </h3>
+
+          <p class="post-description">
+            Some thoughts about software, music and the satisfaction
+            of making something that didn't exist before.
+          </p>
+
+          <div class="tags">
+            <span class="tag">thoughts</span>
+            <span class="tag">life</span>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="post">
+
+        <div class="post-date">
+          2026.08.02
+        </div>
+
+        <div>
+          <h3 class="post-title">
+            My current development setup
+          </h3>
+
+          <p class="post-description">
+            Tools, editors, terminal setup and other things
+            I've been using lately.
+          </p>
+
+          <div class="tags">
+            <span class="tag">coding</span>
+            <span class="tag">setup</span>
+          </div>
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- MUSIC -->
+
+    <section id="music">
+
+      <div class="section-title">
+        <span class="section-number">02</span>
+        <strong>MUSIC</strong>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="track">
+
+        <div class="play">▶</div>
+
+        <div>
+          <div class="track-name">The Verge</div>
+          <div class="track-artist">Gabriel Ether</div>
+        </div>
+
+        <div class="track-duration">
+          04:32
+        </div>
+
+      </div>
+
+
+      <div class="track">
+
+        <div class="play">▶</div>
+
+        <div>
+          <div class="track-name">Polaris</div>
+          <div class="track-artist">Gabriel Ether</div>
+        </div>
+
+        <div class="track-duration">
+          05:18
+        </div>
+
+      </div>
+
+
+      <div class="track">
+
+        <div class="play">▶</div>
+
+        <div>
+          <div class="track-name">Untitled 03</div>
+          <div class="track-artist">Gabriel Ether</div>
+        </div>
+
+        <div class="track-duration">
+          06:02
+        </div>
+
+      </div>
+
+      <a href="#" class="music-link">
+        $ open soundcloud →
+      </a>
+
+    </section>
+
+
+    <!-- PHOTOS -->
+
+    <section id="photos">
+
+      <div class="section-title">
+        <span class="section-number">03</span>
+        <strong>PHOTOS</strong>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="photos">
+
+        <div class="photo">
+          <img src="https://picsum.photos/500/500?random=1" alt="">
+        </div>
+
+        <div class="photo">
+          <img src="https://picsum.photos/500/500?random=2" alt="">
+        </div>
+
+        <div class="photo">
+          <img src="https://picsum.photos/500/500?random=3" alt="">
+        </div>
+
+        <div class="photo">
+          <img src="https://picsum.photos/500/500?random=4" alt="">
+        </div>
+
+        <div class="photo">
+          <img src="https://picsum.photos/500/500?random=5" alt="">
+        </div>
+
+        <div class="photo">
+          <img src="https://picsum.photos/500/500?random=6" alt="">
+        </div>
+
+        <div class="photo">
+          <img src="https://picsum.photos/500/500?random=7" alt="">
+        </div>
+
+        <div class="photo">
+          <img src="https://picsum.photos/500/500?random=8" alt="">
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RANDOM -->
+
+    <section id="random">
+
+      <div class="section-title">
+        <span class="section-number">04</span>
+        <strong>RANDOM</strong>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="random-list">
+
+        <a href="#" class="random-item">
+          A game I've been playing lately
+        </a>
+
+        <a href="#" class="random-item">
+          A website I found interesting
+        </a>
+
+        <a href="#" class="random-item">
+          A song that has been stuck in my head
+        </a>
+
+        <a href="#" class="random-item">
+          Something I bought and probably didn't need
+        </a>
+
+        <a href="#" class="random-item">
+          A completely unnecessary thought
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+      <div>
+        © 2026 Gabriel
+      </div>
+
+      <div>
+        <span>●</span> online somewhere
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

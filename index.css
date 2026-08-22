@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+
+@theme {
+  --color-primary: #00ff88;
+  --color-primarydim: #004022;
+  --animate-type: type 1s step-end infinite;
+
+  @keyframes type {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+*::-webkit-scrollbar{
+  width: 7px;
+  background:black;
+}
+
+*::-webkit-scrollbar-track {
+  background: black;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgb(47, 47, 47);
+  border-radius: 10px;
+}
+
+#photo-content::-webkit-scrollbar-track {
+  background: rgb(10, 10, 10);
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#photo-content::-webkit-scrollbar-thumb {
+  background: rgb(25, 25, 25);
+  border-radius: 10px;
+}
+
+* {
+  font-family: "Monospace", sans-serif;
+}
+
+body {
+  background: black;
+  color: white;
+}
