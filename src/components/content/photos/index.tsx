@@ -16,7 +16,7 @@ const Photos: React.FC = () => {
         <p className="text-stone-400 text-xs mt-1 mb-2">
           Uma seleção de fotos que tirei recentemente.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-3 md:gap-2 [&>a>img]:border [&>a>img]:border-stone-800 [&>a>img]:grayscale-50 md:[&>a>img]:grayscale-100 [&>a>img]:hover:grayscale-0 [&>a>img]:transition-all">
+        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-3 md:gap-2 [&>a>img]:border [&>a>img]:border-stone-800 [&>a>img]:grayscale-50 md:[&>a>img]:grayscale-100 [&>a>img]:hover:grayscale-0 [&>a>img]:transition-all">
         {photos.slice(photos.length - 8, photos.length).reverse().map((photo: any, idx: number) => (
           <Link to={`/photos/${photo.id}`}>
             <img

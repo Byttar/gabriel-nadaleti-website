@@ -60,7 +60,7 @@ const PhotosPage: React.FC = () => {
         <p className="text-stone-400 text-sm -mt-4 mb-5 max-w-2xl">
           Uma galeria com todas as fotos publicadas por Gabriel Nadaleti.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 [&>img]:border [&>img]:border-stone-800 [&>img]:grayscale-100 [&>img]:hover:grayscale-0 [&>img]:transition-all">
+        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 [&>img]:border [&>img]:border-stone-800 [&>img]:grayscale-100 [&>img]:hover:grayscale-0 [&>img]:transition-all">
           {photos.map((photo: any, idx: number) => (
             <img
               key={idx}
@@ -90,7 +90,7 @@ const PhotosPage: React.FC = () => {
             className={`relative flex-col-reverse md:flex-row opacity-0 justify-between outline-none flex bg-black border border-dashed border-stone-600 rounded-lg shadow-lg overflow-hidden ${showModal ? modalAnim : ""}`}
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex pt-0 md:pt-5 sm:max-w-full md:max-w-97.5 flex-col items-center gap-3 p-5 sm:p-6 w-full md:border-r border-dashed border-stone-600 min-w-55">
+            <div className="flex pt-0 md:pt-5 sm:max-w-full md:max-w-90 xl:max-w-97.5 flex-col items-center gap-3 p-5 sm:p-6 w-full md:border-r border-dashed border-stone-600 min-w-55">
               <h2 className="text-white text-lg font-semibold leading-snug">
                 {selectedPhoto.title || PLACEHOLDER_TITLE}
               </h2>
@@ -102,11 +102,11 @@ const PhotosPage: React.FC = () => {
               {selectedPhoto.filename}
               </p>
             </div>
-            <div className="flex items-center justify-center bg-stone-950 p-4 sm:pt-4 md:pt-6 sm:m-auto sm:w-[80%] md:max-w-[65%] min-h-0 shrink-1">
+            <div className="flex items-center justify-center bg-stone-950 p-4 sm:pt-4 md:pt-6 sm:m-auto sm:w-[80%] md:max-w-[65%] w-full shrink-1">
               <img
                 src={assetUrl(selectedPhoto.path)}
                 alt={selectedPhoto.title || PLACEHOLDER_TITLE}
-                className="max-h-[70vh] m-auto max-w-full object-contain rounded-md"
+                className="max-h-[70vh] xl:min-w-[800px] m-auto max-w-full object-contain rounded-md"
               />
             </div>
             <button
