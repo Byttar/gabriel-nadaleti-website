@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       { path: "posts/:slug", element: <PostPage /> },
     ],
   },
-]);
+], {basename: "/gabriel-nadaleti-website"});
 
 function App() {
   return (
