@@ -8,7 +8,7 @@ const songs = [
   {
     title: "Lift You Up",
     artist: "Gabriel Nadaleti",
-    src: "/src/assets/songs/lift_you_up.mp3",
+    src: "/songs/lift_you_up.mp3",
   }
 ];
 

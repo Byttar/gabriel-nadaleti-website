@@ -4,76 +4,76 @@
     "title": "Acerola",
     "filename": "image.png",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.",
-    "path": "/src/assets/photos/macro/20260306_175922.jpg"
+    "path": "/photos/macro/20260306_175922.jpg"
   },
   {
     "id": 2,
     "title": "teste1",
     "filename": "image.png",
     "description": "teste",
-    "path": "/src/assets/photos/macro/20260510_123826.jpg"
+    "path": "/photos/macro/20260510_123826.jpg"
   },
   {
     "id": 3,
     "title": "teste1",
     "filename": "image.png",
     "description": "teste",
-    "path": "/src/assets/photos/macro/20260717_154618.jpg"
+    "path": "/photos/macro/20260717_154618.jpg"
   },
   {
     "id": 4,
     "title": "teste1",
     "filename": "image.png",
     "description": "teste",
-    "path": "/src/assets/photos/nature/20251229_144241.jpg"
+    "path": "/photos/nature/20251229_144241.jpg"
   },
   {
     "id": 5,
     "title": "teste1",
     "filename": "image.png",
     "description": "terste",
-    "path": "/src/assets/photos/nature/20260131_163628.jpg"
+    "path": "/photos/nature/20260131_163628.jpg"
   },
   {
     "id": 6,
     "title": "teste1",
     "filename": "image.png",
     "description": "teste",
-    "path": "/src/assets/photos/nature/20260131_163639.jpg"
+    "path": "/photos/nature/20260131_163639.jpg"
   },
   {
     "id": 7,
     "title": "teste1",
     "filename": "image.png",
     "description": "terste",
-    "path": "/src/assets/photos/nature/20260811_194923.jpg"
+    "path": "/photos/nature/20260811_194923.jpg"
   },
   {
     "id": 8,
     "title": "teste1",
     "filename": "image.png",
     "description": "teste",
-    "path": "/src/assets/photos/nature/costela.jpg"
+    "path": "/photos/nature/costela.jpg"
   },
   {
     "id": 9,
     "title": "1teste",
     "filename": "image.png",
     "description": "1",
-    "path": "/src/assets/photos/sky/20251215_173348.jpg"
+    "path": "/photos/sky/20251215_173348.jpg"
   },
   {
     "id": 10,
     "title": "teste",
     "filename": "image.png",
     "description": "1",
-    "path": "/src/assets/photos/sky/20251215_173400.jpg"
+    "path": "/photos/sky/20251215_173400.jpg"
   },
   {
     "id": 11,
     "title": "teste",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.",
-    "path": "/src/assets/photos/nature/teste.gif",
+    "path": "/photos/nature/teste.gif",
     "filename": "teste.gif"
   }
 ]
