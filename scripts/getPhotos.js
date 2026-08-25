@@ -2,8 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
 
-const PHOTOS_DIR = path.join(process.cwd(), "src", "assets", "photos");
+// Search in public/photos instead of src/assets/photos
+const PHOTOS_DIR = path.join(process.cwd(), "public", "photos");
 const OUTPUT_FILE = path.join(process.cwd(), "src", "components", "content", "photos", "data", "photos.json");
+// Cache remains in /scripts
 const CACHE_DIR = path.join(process.cwd(), "scripts", ".cache");
 const CACHE_FILE = path.join(CACHE_DIR, "_loadedPhotos.json");
 
@@ -37,6 +39,15 @@ function ask(question) {
   return new Promise((resolve) => {
     rl.question(question, (answer) => resolve(answer.trim()));
   });
+}
+
+// Helper to prompt for tags, split by comma, trim, filter empty
+async function askTags() {
+  const tagsInput = await ask("Tags (separadas por vírgula): ");
+  return tagsInput
+    .split(",")
+    .map(s => s.trim())
+    .filter(s => s.length > 0);
 }
 
 // Generate next id for photo based on index in sorted photos array (1-based incremental)
@@ -73,17 +84,6 @@ async function main() {
     }
   }
 
-  // Load existing photos json if exists to preserve prior data
-  let previousRecords = [];
-  if (fs.existsSync(OUTPUT_FILE)) {
-    try {
-      previousRecords = JSON.parse(fs.readFileSync(OUTPUT_FILE, "utf8"));
-      if (!Array.isArray(previousRecords)) previousRecords = [];
-    } catch {
-      previousRecords = [];
-    }
-  }
-
   // Gather all photo relative paths, sort for deterministic id assignment
   const photos = getAllPhotos(PHOTOS_DIR);
   photos.sort();
@@ -94,71 +94,65 @@ async function main() {
     process.exit(0);
   }
 
-  // Map for previousRecords by photo path (to preserve prior data like title/desc);
-  // Key by path ("/src/assets/photos/"+rel)
-  const prevRecordMap = new Map();
-  for (const rec of previousRecords) {
-    // fallback for older data may have different path formats
-    prevRecordMap.set(rec.path, rec);
-  }
-
   let addCount = 0;
   // Set for O(1) lookups on loaded/cached photos
   const loadedSet = new Set(loadedPhotos);
 
-  // Will assemble this array with correct incremental id assignment
-  const newRecords = [];
+  // Try to load existing photos.json
+  let currentPhotos = [];
+  if (fs.existsSync(OUTPUT_FILE)) {
+    try {
+      currentPhotos = JSON.parse(fs.readFileSync(OUTPUT_FILE, "utf8"));
+      if (!Array.isArray(currentPhotos)) {
+        console.warn("photos.json não contém um array. O arquivo será reparado.");
+        currentPhotos = [];
+      }
+    } catch {
+      console.warn("photos.json inválido ou não pôde ser lido. Será recriado.");
+      currentPhotos = [];
+    }
+  }
 
   for (let i = 0; i < photos.length; ++i) {
     const photo = photos[i];
-    const id = getPhotoId(i);
-    const photoPath = `/src/assets/photos/${photo}`;
+    const id = getPhotoId(i + loadedPhotos.length - 1);
+    // The photoPath should be like "/public/photos/..."
+    const photoPath = `/public/photos/${photo}`;
     const filename = photo.split("/").pop() || path.basename(photo);
 
     let record = null;
-    // Try to preserve previous metadata if available (title, description), but always update id
-    if (prevRecordMap.has(photoPath)) {
-      // Clone previous but update id
-      record = { ...prevRecordMap.get(photoPath), id };
-    }
 
     if (!loadedSet.has(photo)) {
       // Not in cache, need to ask for data
       console.log(`\nArquivo encontrado: ${photo}`);
       const title = await ask("Título da imagem: ");
       const description = await ask("Descrição curta: ");
+      const tags = await askTags();
       record = {
         id,
         title,
         description,
+        tags,
         path: photoPath,
         filename, // includes extension
       };
       loadedPhotos.push(photo);
       addCount++;
-    } else if (!record) {
-      // Loaded/cached but not present in previousRecords (possible if deleted the output and reran with cache preserved),
-      // so ask for info
-      console.log(`\nArquivo encontrado (no old data): ${photo}`);
-      const title = await ask("Título da imagem: ");
-      const description = await ask("Descrição curta: ");
-      record = {
-        id,
-        title,
-        description,
-        path: photoPath,
-        filename,
-      };
-    } else {
-      // Present in records/cached: ensure id is updated
-      record.id = id;
-    }
 
-    newRecords.push(record);
+      // Append only the new record to the array in photos.json
+      currentPhotos.push(record);
+
+      // Save updated photos.json immediately after each addition
+      fs.writeFileSync(OUTPUT_FILE, JSON.stringify(currentPhotos, null, 2), "utf8");
+    } else {
+      // Already in cache, just reuse the path and filename, prompt for everything again (since no previousRecords)
+      // Optionally, you can skip and not include old cached photos in output, but let's prompt again to ensure data integrity
+      console.log(`\nArquivo já está no cache: ${photo}`);
+      continue;
+    }
   }
 
-  // Save to json and cache
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(newRecords, null, 2), "utf8");
+  // Save cache of loaded photos
   fs.writeFileSync(CACHE_FILE, JSON.stringify(loadedPhotos, null, 2), "utf8");
   console.log(`\nDados das fotos salvos em: ${OUTPUT_FILE}`);
   if (addCount === 0) {
