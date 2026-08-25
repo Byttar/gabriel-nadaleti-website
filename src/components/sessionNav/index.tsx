@@ -1,11 +1,13 @@
+import { Link } from "react-router";
+
 const SessionNav = ({link, url}: {link: string, url: string}) => {
   return (
-    <a
-    href={url}
+    <Link
+    to={url}
     className="text-stone-500 text-sm hover:underline"
   >
     $ {link}
-  </a>
+  </Link>
   );
 };
 
