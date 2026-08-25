@@ -11,17 +11,69 @@ const PLACEHOLDER_TITLE = "Sem título";
 const PLACEHOLDER_DESCRIPTION =
   "Esta foto ainda não tem uma descrição. Em breve, mais detalhes sobre o momento capturado aqui.";
 
+function parseDescriptionFormat(desc: string): React.ReactNode {
+  if (!desc) return null;
+  let working = desc;
+  const boldRegex = /\*\*(.+?)\*\*/g;
+  let elements: (string | React.ReactNode)[] = [];
+  let match;
+  let boldResults: { start: number; end: number; content: string }[] = [];
+  while ((match = boldRegex.exec(working)) !== null) {
+    boldResults.push({
+      start: match.index,
+      end: match.index + match[0].length,
+      content: match[1],
+    });
+  }
+
+  if (boldResults.length === 0) {
+    return parseItalics(working);
+  }
+
+  let prevEnd = 0;
+  for (let i = 0; i < boldResults.length; i++) {
+    const { start, end, content } = boldResults[i];
+    if (start > prevEnd) {
+      elements.push(parseItalics(working.slice(prevEnd, start)));
+    }
+    elements.push(<b key={`b-${i}`}>{parseItalics(content)}</b>);
+    prevEnd = end;
+  }
+  if (prevEnd < working.length) {
+    elements.push(parseItalics(working.slice(prevEnd)));
+  }
+  return elements;
+
+  function parseItalics(text: string): React.ReactNode {
+    const italicsRegex = /_(.+?)_/g;
+    let elems: (string | React.ReactNode)[] = [];
+    let matchI;
+    let i = 0;
+    let lastI = 0;
+    while ((matchI = italicsRegex.exec(text)) !== null) {
+      if (matchI.index > lastI) {
+        elems.push(text.slice(lastI, matchI.index));
+      }
+      elems.push(<i key={`i-${i}`}>{matchI[1]}</i>);
+      lastI = matchI.index + matchI[0].length;
+      i++;
+    }
+    if (lastI < text.length) {
+      elems.push(text.slice(lastI));
+    }
+    return elems.length === 1 ? elems[0] : elems.filter(e => e !== "");
+  }
+}
+
 const PhotosPage: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<null | typeof photos[0]>(null);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const { photoid } = useParams<{photoid: string}>();
 
-  // Add animation when opening the modal
   const handlePhotoClick = (photo: typeof photos[0]) => {
     navigate(`/photos/${photo.id}`);
     setShowModal(false);
-    // Force reflow for retriggering the animation if needed
     setTimeout(() => setShowModal(true), 10);
   };
 
@@ -94,8 +146,8 @@ const PhotosPage: React.FC = () => {
               <h2 className="text-white text-lg font-semibold leading-snug">
                 {selectedPhoto.title || PLACEHOLDER_TITLE}
               </h2>
-              <p id="photo-content" className="text-stone-400 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
-                {selectedPhoto.description || PLACEHOLDER_DESCRIPTION}
+              <p id="photo-content" className="w-full whitespace-pre-line text-stone-400 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
+                {parseDescriptionFormat(selectedPhoto.description || PLACEHOLDER_DESCRIPTION)}
               </p>
 
               <p className="text-stone-600 mt-auto self-start">

@@ -1,79 +1,80 @@
 [
   {
     "id": 1,
-    "title": "Acerola",
-    "filename": "image.png",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.",
-    "path": "/photos/macro/20260306_175922.jpg"
+    "title": "Flor de Acerola",
+    "filename": "acerola.jpg",
+    "description": "Eu nunca tinha visto a flor de um pé de acerola até tirar essa foto.\n\nSuco de acerola é meu suco preferido.",
+    "path": "/photos/macro/acerola.jpg"
   },
   {
     "id": 2,
-    "title": "teste1",
-    "filename": "image.png",
-    "description": "teste",
-    "path": "/photos/macro/20260510_123826.jpg"
+    "title": "Flor de Dracena",
+    "filename": "dracena.jpg",
+    "description": "Foto aproximada das inflorescências de uma Dracena Vermelha.\n\n Aqui no brasil vejo Dracenas em todo lugar, acho que é porque ela é ornamental e provavelmente sobreviveria a uma catastrofe nuclear. \n\n_Cordyline fruticosa_",
+    "path": "/photos/macro/dracena.jpg"
   },
   {
     "id": 3,
-    "title": "teste1",
-    "filename": "image.png",
-    "description": "teste",
-    "path": "/photos/macro/20260717_154618.jpg"
+    "title": "11 Horas",
+    "filename": "onzehoras.jpg",
+    "description": "Flor da planta _Portulaca Grandiflora_ mais popularmente conhecida como Onze Horas, porque ela costuma florir justamente as 11 da manhã. \n\n Minha mãe plantou um monte dessas numa floreira na frente da minha casa e essa planta parece ser indestrutivel.",
+    "path": "/photos/macro/onzehoras.jpg"
   },
   {
     "id": 4,
-    "title": "teste1",
-    "filename": "image.png",
-    "description": "teste",
-    "path": "/photos/nature/20251229_144241.jpg"
+    "title": "Hibisco",
+    "filename": "hibisco.jpg",
+    "description": "Foto exageradamente dramática de um arburto \n\n_Hibiscus rosa-sinensis_",
+    "path": "/photos/nature/hibisco.jpg"
   },
   {
     "id": 5,
-    "title": "teste1",
-    "filename": "image.png",
-    "description": "terste",
-    "path": "/photos/nature/20260131_163628.jpg"
+    "title": "Canafístula",
+    "filename": "canafistula1.png",
+    "description": "Arvore canafistula (_Peltophorum dubium_) \n\nna antiga casa onde eu morava",
+    "path": "/photos/nature/canafistula1.jpg"
   },
   {
     "id": 6,
-    "title": "teste1",
-    "filename": "image.png",
-    "description": "teste",
-    "path": "/photos/nature/20260131_163639.jpg"
+    "title": "Flores Canafístula",
+    "filename": "canafistula2.jpg",
+    "description": "Foto aproximada das flores da arvore Canafistula (Peltophorum dubium)",
+    "path": "/photos/nature/canafistula2.jpg"
   },
   {
     "id": 7,
-    "title": "teste1",
-    "filename": "image.png",
-    "description": "terste",
-    "path": "/photos/nature/20260811_194923.jpg"
+    "title": "Borboleta Laranja",
+    "filename": "borboleta1.png",
+    "description": "Foto aproximada de uma borboleta que apareceu na casa dos meus pais. \n\n Achei o padrão das asas muito lindo e a coloração laranja era muito forte.  \n\n_Pantherodes pardalaria_",
+    "path": "/photos/nature/borboleta1.jpg"
   },
   {
     "id": 8,
-    "title": "teste1",
-    "filename": "image.png",
-    "description": "teste",
+    "title": "Costela de Adão do Shopping",
+    "filename": "costela.jpg",
+    "description": "Essa é a minha planta preferida, conhecida popularmente como Costela de Adão tem o nome cientifico de _Monstera Deliciosa_ \n\n _Monstera_ vem do latim e significa **Monstruosa** pelo seu tamanho. _Deliciosa_ é por causa dos seus deliciosos frutos.\n\n Dizem que tem sabor de abacaxi com morango, mas eu nunca provei. \n\n _Monstera Deliciosa_",
     "path": "/photos/nature/costela.jpg"
   },
   {
     "id": 9,
-    "title": "1teste",
-    "filename": "image.png",
-    "description": "1",
-    "path": "/photos/sky/20251215_173348.jpg"
+    "title": "Céu 1",
+    "filename": "ceu1.png",
+    "description": "Gosto de enquadrar foto das nuvens bem no centro, talvez eu faça uma compilação delas",
+    "path": "/photos/sky/ceu1.jpg",
+    "tag": ["nuvens"]
   },
   {
     "id": 10,
-    "title": "teste",
-    "filename": "image.png",
-    "description": "1",
-    "path": "/photos/sky/20251215_173400.jpg"
+    "title": "Vista Catarina Outlet",
+    "filename": "horizonte1.png",
+    "description": "As vezes eu penso se todo mundo acha o mundo tão bonito quanto eu acho",
+    "path": "/photos/sky/horizonte1.jpg"
   },
   {
     "id": 11,
-    "title": "teste",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.",
-    "path": "/photos/nature/teste.gif",
-    "filename": "teste.gif"
+    "title": "Palmeira",
+    "description": "A resolução ta bem ruim, mas eu gostei muito dessa foto pelo contraste do verde e do azul do céu",
+    "path": "/photos/nature/palmeira.gif",
+    "filename": "palmeira.gif"
   }
 ]
