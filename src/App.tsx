@@ -1,5 +1,4 @@
-import { createBrowserRouter, Outlet, useLocation } from "react-router";
-import { RouterProvider } from "react-router/dom";
+import { HashRouter, Outlet, useLocation, Routes, Route } from "react-router";
 import Home from "./Pages/Home";
 import Header from "./components/header";
 import PhotosPage from "./Pages/Photos";
@@ -25,37 +24,34 @@ const ScrollToTop = () => {
 }
 
 const BaseComponent = () => {
-  return <>
-    <Header/>
-    <ScrollToTop/>
-    <Outlet/>
-    <Footer/>
-  </>
-}
-
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <BaseComponent />,
-    children: [
-      { index: true, Component: Home },
-      { path: "photos", element: <PhotosPage /> },
-      { path: "photos/:photoid", element: <PhotosPage /> },
-      { path: "songs", element: <SongsPage /> },
-      { path: "resume", element: <Home /> },
-      { path: "posts", element: <PostsPage /> },
-      { path: "posts/:slug", element: <PostPage /> },
-    ],
-  },
-], {basename: "/"});
+  return (
+    <>
+      <Header />
+      <ScrollToTop />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
 function App() {
   return (
-    <section className='p-6 md:p-0 flex-col bg-black h-lvh w-full max-w-230 m-auto flex items-start'>
-      <RouterProvider router={router} />
+    <section className="p-6 md:p-0 flex-col bg-black h-lvh w-full max-w-230 m-auto flex items-start">
+      <HashRouter basename="/">
+        <Routes>
+          <Route path="/" element={<BaseComponent />}>
+            <Route index element={<Home />} />
+            <Route path="photos" element={<PhotosPage />} />
+            <Route path="photos/:photoid" element={<PhotosPage />} />
+            <Route path="songs" element={<SongsPage />} />
+            <Route path="resume" element={<Home />} />
+            <Route path="posts" element={<PostsPage />} />
+            <Route path="posts/:slug" element={<PostPage />} />
+          </Route>
+        </Routes>
+      </HashRouter>
     </section>
-  )
+  );
 }
 
 export default App
