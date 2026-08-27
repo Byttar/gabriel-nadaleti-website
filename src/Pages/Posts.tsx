@@ -4,6 +4,7 @@ import { postSlug } from "../utils/postSlug";
 import SessionNav from "../components/sessionNav";
 import Code from "../components/code";
 import { Link } from "react-router";
+import { isRecentPost } from "../utils/isRecentPost";
 
 function getAllTags(myPosts: typeof posts) {
   const allTags = myPosts.flatMap((post) => post.tags ?? []);
@@ -18,14 +19,23 @@ const PostsPage: React.FC = () => {
 
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {
-      const tagMatch = !selectedTag || (post.tags ?? []).includes(selectedTag);
+      // "novo" pseudo tag for recent posts
+      const postIsRecent = isRecentPost(post.date);
+      const postTags = [...(post.tags ?? [])];
+      if (postIsRecent && !postTags.includes("novo")) {
+        postTags.push("novo");
+      }
+
+      const tagMatch =
+        !selectedTag ||
+        postTags.includes(selectedTag);
 
       const s = search.toLowerCase().trim();
       const searchMatch =
         !s ||
         post.title.toLowerCase().includes(s) ||
         (post.description || "").toLowerCase().includes(s) ||
-        (post.tags ?? []).some((tag) => tag.toLowerCase().includes(s));
+        postTags.some((tag) => tag.toLowerCase().includes(s));
 
       return tagMatch && searchMatch;
     });
@@ -53,11 +63,10 @@ const PostsPage: React.FC = () => {
         <div className="flex flex-wrap gap-2 mt-1">
           <button
             onClick={() => setSelectedTag(null)}
-            className={`px-2 py-1 rounded text-xs border transition-colors ${
-              selectedTag === null
-                ? "bg-primarydim text-white border-primary border-dashed"
-                : "bg-stone-900 text-stone-400 border-stone-800 hover:bg-stone-800"
-            }`}
+            className={`px-2 py-1 rounded text-xs border transition-colors ${selectedTag === null
+              ? "bg-primarydim text-white border-primary border-dashed"
+              : "bg-stone-900 text-stone-400 border-stone-800 hover:bg-stone-800"
+              }`}
           >
             Todas
           </button>
@@ -65,11 +74,10 @@ const PostsPage: React.FC = () => {
             <button
               key={tag}
               onClick={() => setSelectedTag(tag)}
-              className={`px-2 py-1 rounded text-xs border transition-colors ${
-                selectedTag === tag
-                  ? "bg-primarydim text-white border-primary border-dashed"
-                  : "bg-stone-900 text-stone-500 border-stone-800 hover:bg-stone-800"
-              }`}
+              className={`px-2 py-1 rounded text-xs border transition-colors ${selectedTag === tag
+                ? "bg-primarydim text-white border-primary border-dashed"
+                : "bg-stone-900 text-stone-500 border-stone-800 hover:bg-stone-800"
+                }`}
             >
               {tag}
             </button>
@@ -82,27 +90,38 @@ const PostsPage: React.FC = () => {
             Nenhum post encontrado.
           </div>
         ) : (
-          filteredPosts.map((post) => (
-            <Link
-              key={post.title}
-              to={`/posts/${postSlug(post.title)}`}
-              className="block border-dashed border border-stone-800 bg-stone-950 rounded-md px-4 py-3 hover:border-primary transition-colors"
-            >
-              <span className="text-xs text-stone-500 tracking-widest block mb-1">{post.date}</span>
-              <h2 className="text-lg font-bold text-white mb-1">{post.title}</h2>
-              <p className="text-stone-400 text-sm mb-2">{post.description}</p>
-              <div className="flex flex-row gap-2">
-                {(post.tags ?? []).map((tag) => (
-                  <span
-                    key={tag}
-                    className="bg-stone-900 text-stone-500 rounded px-2 py-1 text-xs border border-stone-800"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </Link>
-          ))
+          filteredPosts
+            .slice() // copy to avoid mutating filteredPosts in place
+            .reverse()
+            .map((post) => {
+              const postIsRecent = isRecentPost(post.date);
+              const postTags = [...(post.tags ?? [])];
+
+              return (
+                <Link
+                  key={post.title}
+                  to={`/posts/${postSlug(post.title)}`}
+                  className="relative block border-dashed border border-stone-800 bg-stone-950 rounded-md px-4 py-3 hover:border-primary transition-colors"
+                >
+                  <span className="text-xs text-stone-500 tracking-widest block mb-1">{post.date}</span>
+                  <h2 className="text-lg font-bold text-white mb-1">
+                    {post.title}
+                    <span className="inline-block sm:absolute static ml-0 xs:ml-2 sm:ml-4 top-2 right-3 border-primary border border-dashed px-2 rounded text-xs">Novo</span>
+                  </h2>
+                  <p className="text-stone-400 text-sm mb-2">{post.description}</p>
+                  <div className="flex flex-row gap-2">
+                    {postTags.map((tag) =>
+                      <span
+                        key={tag}
+                        className="bg-stone-900 text-stone-500 rounded px-2 py-1 text-xs border border-stone-800"
+                      >
+                        {tag}
+                      </span>
+                    )}
+                  </div>
+                </Link>
+              );
+            })
         )}
       </div>
       <div className="flex justify-center mt-8">
