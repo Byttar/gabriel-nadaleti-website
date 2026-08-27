@@ -7,5 +7,16 @@
     "tags": [
       "Introspecção"
     ]
+  },
+  {
+    "title": "Review Pokemon Prism",
+    "description": "Uma breve review da minha experiencia jogando a hack Pokemon Prism",
+    "content": "/src/assets/posts/review-pokemon-prism.md",
+    "date": "26 de agosto de 2026 às 22:28",
+    "tags": [
+      "Pokemon",
+      "Jogos",
+      "Review"
+    ]
   }
 ]
