@@ -94,7 +94,6 @@ const PostsPage: React.FC = () => {
             .slice() // copy to avoid mutating filteredPosts in place
             .reverse()
             .map((post) => {
-              const postIsRecent = isRecentPost(post.date);
               const postTags = [...(post.tags ?? [])];
 
               return (
