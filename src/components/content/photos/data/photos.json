@@ -90,5 +90,16 @@
     "description": "A resolução ta bem ruim, mas eu gostei muito dessa foto pelo contraste do verde e do azul do céu",
     "path": "/photos/nature/palmeira.gif",
     "filename": "palmeira.gif"
+  },
+  {
+    "id": 16,
+    "title": "Borboleta na Flor",
+    "description": "Tirei essa foto no jardim botanico de Curitiba usando uma camera da sony. \n\n Acho muito legal como a camera digital captura as fotos de uma forma muito diferente das cameras dos smartphones. \n\n Acho que a gente ficou acostumado demais com o pós-processamento do celular",
+    "tags": [
+      "Natureza",
+      "Borboleta"
+    ],
+    "path": "/public/photos/nature/Borboleta_camera.jpg",
+    "filename": "Borboleta_camera.jpg"
   }
 ]

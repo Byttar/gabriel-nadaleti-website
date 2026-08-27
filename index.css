@@ -7,6 +7,7 @@
   --animate-type: type 1s step-end infinite;
   --breakpoint-md: 880px;
   --breakpoint-sm: 576px;
+  --breakpoint-xs: 360px;
 
   @keyframes type {
     50% {

@@ -154,11 +154,11 @@ const PhotosPage: React.FC = () => {
               {selectedPhoto.filename}
               </p>
             </div>
-            <div className="flex items-center justify-center bg-stone-950 p-4 sm:pt-4 md:pt-6 sm:m-auto sm:w-[80%] md:max-w-[65%] w-full shrink-1">
+            <div className="flex items-center justify-center bg-stone-950 p-4 sm:pt-4 md:pt-6 sm:m-auto sm:w-[80%] md:max-w-[65%] w-full shrink">
               <img
                 src={assetUrl(selectedPhoto.path)}
                 alt={selectedPhoto.title || PLACEHOLDER_TITLE}
-                className="max-h-[70vh] xl:min-w-[800px] m-auto max-w-full object-contain rounded-md"
+                className="max-h-[70vh] m-auto max-w-full object-contain rounded-md"
               />
             </div>
             <button

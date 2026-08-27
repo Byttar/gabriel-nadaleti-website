@@ -9,7 +9,7 @@ const OUTPUT_FILE = path.join(process.cwd(), "src", "components", "content", "ph
 const CACHE_DIR = path.join(process.cwd(), "scripts", ".cache");
 const CACHE_FILE = path.join(CACHE_DIR, "_loadedPhotos.json");
 
-// Helper to recursively find all image files in a directory
+// Helper to recursively find all image files in a directory, but ignore /posts subfolder
 function getAllPhotos(dir, relative = "") {
   let results = [];
   const list = fs.readdirSync(dir);
@@ -18,7 +18,12 @@ function getAllPhotos(dir, relative = "") {
     const filePath = path.join(dir, file);
     const relPath = path.join(relative, file);
     const stat = fs.statSync(filePath);
+    // Ignore /posts directory at any depth from PHOTOS_DIR
     if (stat && stat.isDirectory()) {
+      if (file.toLowerCase().includes("posts")) {
+        // Skip /posts folder
+        return;
+      }
       results = results.concat(getAllPhotos(filePath, relPath));
     } else if (stat && stat.isFile()) {
       // Only allow some common image extensions
@@ -84,7 +89,7 @@ async function main() {
     }
   }
 
-  // Gather all photo relative paths, sort for deterministic id assignment
+  // Gather all photo relative paths, sort for deterministic id assignment, ignoring /posts
   const photos = getAllPhotos(PHOTOS_DIR);
   photos.sort();
 
