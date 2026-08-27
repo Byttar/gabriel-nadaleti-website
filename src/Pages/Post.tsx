@@ -63,7 +63,7 @@ const PostPage: React.FC = () => {
             </span>
           ))}
         </div>
-        <div className="[&>p>img]:w-[100] text-stone-300 text-sm max-w-2xl [&_p]:mb-4 [&_h1]:text-white [&_h1]:font-bold [&_h1]:text-xl [&_h1]:mb-3 [&_h2]:text-white [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mb-2 [&_a]:text-primary [&_a]:underline [&_code]:bg-stone-900 [&_code]:px-1 [&_code]:rounded">
+        <div className="[&>p>img]:w-[400px] text-stone-300 text-sm max-w-2xl [&_p]:mb-4 [&_h1]:text-white [&_h1]:font-bold [&_h1]:text-xl [&_h1]:mb-3 [&_h2]:text-white [&_h2]:font-bold [&_h2]:text-lg [&_h2]:mb-2 [&_a]:text-primary [&_a]:underline [&_code]:bg-stone-900 [&_code]:px-1 [&_code]:rounded">
           <ReactMarkdown components={{
             a: ({ node, ...props }) => (
               <a
