@@ -132,7 +132,7 @@ const SongsPage: React.FC = () => {
               key={song.src}
               className={`flex items-center cursor-pointer w-full gap-4 rounded-md px-3 py-2 ${
                 selectedSongIdx === idx
-                  ? "bg-stone-900 border border-primary border-dashed"
+                  ? "bg-stone-900 border border-primary border-2"
                   : "bg-stone-950 border border-stone-800"
               } transition-colors group`}
               onClick={() => handleClickSong(idx)}
@@ -172,7 +172,7 @@ const SongsPage: React.FC = () => {
           ))}
         </div>
         <div className="grow flex flex-col items-start justify-start min-w-65 md:pl-15">
-          <div ref={containerRef} className="border-dashed border border-primary w-full min-h-63">
+          <div ref={containerRef} className="border-3 border-primary w-full min-h-63">
             <Visual width={containerRef.current?.clientWidth}/>
           </div>
           <div className="w-full flex flex-col gap-1 mt-4">

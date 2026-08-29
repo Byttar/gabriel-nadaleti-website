@@ -7,7 +7,7 @@ import Code from "../code";
 
 const Content: React.FC = () => {
   return (
-    <main className=" w-full mt-15 gap-8 flex flex-col">
+    <main className=" w-full mt-6 gap-8 flex flex-col">
       <p className="text-stone-500 text-sm">
         <Code script="whoami" />
       </p>

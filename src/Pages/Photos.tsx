@@ -113,7 +113,7 @@ const PhotosPage: React.FC = () => {
           Uma galeria com todas as fotos publicadas por Gabriel Nadaleti.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 [&>img]:border [&>img]:border-stone-800 [&>img]:grayscale-100 [&>img]:hover:grayscale-0 [&>img]:transition-all">
-          {photos.map((photo: any, idx: number) => (
+          {photos.reverse().map((photo: any, idx: number) => (
             <img
               key={idx}
               src={assetUrl(photo.path)}
