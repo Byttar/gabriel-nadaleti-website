@@ -6,6 +6,7 @@ const navLinks = [
   { name: "músicas", href: "/songs" },
   { name: "posts", href: "/posts" },
   { name: "fotos", href: "/photos" },
+//  { name: "carreira", href: "/career" }
 ];
 
 const Nav: React.FC = () => {
