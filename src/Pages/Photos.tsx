@@ -5,6 +5,7 @@ import photos from "../components/content/photos/data/photos.json";
 import SessionNav from "../components/sessionNav";
 import { useNavigate, useParams } from "react-router";
 import { assetUrl } from "../utils/loadAsset";
+import { TypingEffect } from "../components/typeReactNode";
 
 const modalAnim = "animate-fade-in-scale";
 
@@ -279,8 +280,10 @@ const PhotosPage: React.FC = () => {
               <h2 className="text-white text-lg font-semibold leading-snug">
                 {selectedPhoto.title || PLACEHOLDER_TITLE}
               </h2>
-              <p id="photo-content" className="w-full whitespace-pre-line text-stone-400 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
-                {parseDescriptionFormat(selectedPhoto.description || PLACEHOLDER_DESCRIPTION)}
+              <p id="photo-content" className="w-full xs:h-25 xs:min-w-auto md:min-w-[340px] md:h-auto whitespace-pre-line text-stone-400 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
+                <TypingEffect speed={10}>
+                  {parseDescriptionFormat(selectedPhoto.description || PLACEHOLDER_DESCRIPTION)}
+                </TypingEffect>
               </p>
               {/* Tags in modal */}
               {Array.isArray(selectedPhoto.tags) && selectedPhoto.tags.length > 0 && (

@@ -7,6 +7,7 @@ import PostsPage from "./Pages/Posts";
 import PostPage from "./Pages/Post";
 import SongsPage from "./Pages/Songs";
 import { useEffect } from "react";
+import CareerPage from "./Pages/Career";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -47,6 +48,7 @@ function App() {
             <Route path="resume" element={<Home />} />
             <Route path="posts" element={<PostsPage />} />
             <Route path="posts/:slug" element={<PostPage />} />
+            <Route path="career" element={<CareerPage />} />
           </Route>
         </Routes>
       </HashRouter>
