@@ -14,7 +14,6 @@ const CareerPage: React.FC = () => {
     jobs,
     scholarship = [],
     skills,
-    skillsDelay = 0,
     languages,
     other
   } = mockCareer;
@@ -28,10 +27,10 @@ const CareerPage: React.FC = () => {
   }, [skills]);
 
   return (
-    <main className="w-full  mx-auto mt-6 flex flex-col gap-8">
+    <main className="w-full mx-auto mt-6 flex flex-col gap-8">
       <Code script="./Career" />
-      <div className="flex gap-6 ">
-        <img src={assetUrl("eu.jpeg")} className="h-50 w-50 aspect-square" />
+      <div className="flex gap-6 md:flex-row flex-col">
+        <img src={assetUrl("eu.jpeg")} className="md:h-50 md:w-50 sm:h-80 sm:w-80 aspect-square" />
         <div>
           <h1 className="font-bold text-white text-2xl sm:text-3xl mb-2 flex flex-col justify-start">
             <Type cursor={false} className="font-semibold" text={name} />
@@ -91,7 +90,7 @@ const CareerPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7 gap-y-2">
           {skillsColumns.map((col, idxCol) => (
             <ul className="list-disc pl-5 text-stone-300 text-sm" key={idxCol}>
-              {col.map((skill, idxSkill) => (
+              {col.map((skill) => (
                 <li key={skill}>
                   <p
                     className="text-stone-300 text-sm"
@@ -115,7 +114,7 @@ const CareerPage: React.FC = () => {
               className="border-b pb-10 relative overflow-hidden group border-dashed pt-4 shadow transition-shadow "
             >
               <div>
-                <p className={`whitespace-pre leading-[1.01] text-[6.5px] ${job.color}`}>
+                <p className={`whitespace-pre leading-[1.01] text-[4px] xs:text-[5px] sm:text-[7px] ${job.color}`}>
                   {job.asciiImage}
                 </p>
               </div>

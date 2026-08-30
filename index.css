@@ -5,9 +5,10 @@
   --color-primary: #00ff88;
   --color-primarydim: #004022;
   --animate-type: type 1s step-end infinite;
-  --breakpoint-md: 880px;
+  --breakpoint-lg: 1000px;
+  --breakpoint-md: 770px;
   --breakpoint-sm: 576px;
-  --breakpoint-xs: 360px;
+  --breakpoint-xs: 380px;
 
   @keyframes type {
     50% {
