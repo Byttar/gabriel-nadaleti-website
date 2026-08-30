@@ -1,5 +1,5 @@
 // this page was all generated using the free tier of the inline edit prompt bar from Cursor
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Code from "../components/code";
 import photos from "../components/content/photos/data/photos.json";
 import SessionNav from "../components/sessionNav";

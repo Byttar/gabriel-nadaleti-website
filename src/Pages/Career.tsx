@@ -193,7 +193,7 @@ const CareerPage: React.FC = () => {
       <section>
         <h2 className="text-lg text-white font-semibold mb-2">Idiomas</h2>
         <ul className="flex flex-col gap-1 text-stone-300 text-sm">
-          {languages.map((l, idx) => (
+          {languages.map((l) => (
             <li key={l.lang}>
               <span className="font-semibold">{l.lang}:</span>{" "}
               <Type
@@ -210,7 +210,7 @@ const CareerPage: React.FC = () => {
       <section>
         <h2 className="text-lg text-white font-semibold mb-2">Outros Conhecimentos</h2>
         <ul className="flex flex-wrap gap-2 mt-1">
-          {other.map((item, idx) => (
+          {other.map((item) => (
             <li
               key={typeof item === "string" ? item : item.text}
               className="bg-primary/80 px-2 py-0.5 rounded text-black text-xs font-semibold border border-primary"
