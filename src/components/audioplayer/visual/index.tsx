@@ -52,7 +52,6 @@ function sketch(p5: P5CanvasInstance, file: string, width?: number) {
 
     fft.setInput(sourceNode);
 
-    p5.pixelDensity(1);
   }
 
   const normalizeAmplitude = (amp, i) => Math.min(amp + (amp * (i / 10)), 0.1) // boost higher frequencies and limit to 75%
@@ -78,7 +77,7 @@ function sketch(p5: P5CanvasInstance, file: string, width?: number) {
 
         p5.push()
         p5.fill([...colors])
-        p5.rect(i * 2.16 + 5, p5.height - definition * 1.3 - (j * definition * 1.2), 10, 5); // not sure how this worked
+        p5.rect(i * 2.145 + 5, p5.height - definition * 1.4 - (j * definition * 1.2), 10, 5); // not sure how this worked
         p5.noStroke();
         p5.pop();
       }
