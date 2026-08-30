@@ -220,7 +220,7 @@ const PhotosPage: React.FC = () => {
         <h1 className="font-bold text-white text-2xl sm:text-3xl mb-4 pl-0">
           {title}
         </h1>
-        <Type delay={500} speed={20} text="Uma galeria com todas as minhas fotos, mostrando um pouco do meu ponto de vista. Pra mim, existe muita beleza no mundo, você só precisa estar disposto a enxergar" className="inline-block text-stone-400 text-sm mb-5 max-w-2xl" />
+        <Type speed={10} text="Uma galeria com todas as minhas fotos, mostrando um pouco do meu ponto de vista. Pra mim, existe muita beleza no mundo, você só precisa estar disposto a enxergar" className="inline-block text-stone-400 text-sm mb-5 max-w-2xl" />
         {/* Tag filter */}
         {allTags.length > 0 && (
           <div className="mb-6 flex flex-wrap gap-2">
@@ -292,7 +292,7 @@ const PhotosPage: React.FC = () => {
               <h2 className="text-white text-lg font-semibold leading-snug">
                 {selectedPhoto.title || PLACEHOLDER_TITLE}
               </h2>
-              <p id="photo-content" className="w-full xs:h-25 xs:min-w-auto md:min-w-[340px] md:h-auto whitespace-pre-line text-stone-400 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
+              <p id="photo-content" className="w-full md:max-w-[200px] xs:h-25 xs:min-w-auto md:min-w-[340px] md:h-auto whitespace-pre-line text-stone-400 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
                 <TypingEffect speed={10} key={selectedPhoto?.id}>
                   {parsedDescription}
                 </TypingEffect>
@@ -361,7 +361,7 @@ const PhotosPage: React.FC = () => {
                     <img
                       src={assetUrl(slides[sliderIdx]?.path)}
                       alt={selectedPhoto.title || PLACEHOLDER_TITLE}
-                      className="max-h-[70vh] lg:min-w-[645px] m-auto max-w-full object-contain rounded-md"
+                      className="max-h-[70vh] aspect-square lg:min-w-[645px] m-auto max-w-full object-contain rounded-md"
                     />
                     {showSlider && (
                       <div className="absolute cursor-pointer bottom-6 left-0 right-0 flex justify-center gap-2">
