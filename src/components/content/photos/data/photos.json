@@ -4,37 +4,53 @@
     "title": "Flor de Acerola",
     "filename": "acerola.jpg",
     "description": "Eu nunca tinha visto a flor de um pé de acerola até tirar essa foto.\n\nSuco de acerola é meu suco preferido.",
-    "path": "/photos/macro/acerola.jpg"
+    "path": "/photos/macro/acerola.jpg",
+    "tags": [
+      "Flores",
+      "Natureza"
+    ]
   },
   {
     "id": 2,
     "title": "Flor de Dracena",
     "filename": "dracena.jpg",
     "description": "Foto aproximada das inflorescências de uma Dracena Vermelha.\n\n Aqui no brasil vejo Dracenas em todo lugar, acho que é porque ela é ornamental e provavelmente sobreviveria a uma catastrofe nuclear. \n\n_Cordyline fruticosa_",
-    "path": "/photos/macro/dracena.jpg"
+    "path": "/photos/macro/dracena.jpg",
+    "tags": [
+      "Flores",
+      "Natureza"
+    ]
   },
   {
     "id": 3,
     "title": "11 Horas",
     "filename": "onzehoras.jpg",
     "description": "Flor da planta _Portulaca Grandiflora_ mais popularmente conhecida como Onze Horas, porque ela costuma florir justamente as 11 da manhã. \n\n Minha mãe plantou um monte dessas numa floreira na frente da minha casa e essa planta parece ser indestrutivel.",
-    "path": "/photos/macro/onzehoras.jpg"
+    "path": "/photos/macro/onzehoras.jpg",
+    "tags": [
+      "Flores",
+      "Natureza"
+    ]
   },
   {
     "id": 4,
     "title": "Hibisco",
     "filename": "hibisco.jpg",
     "description": "Foto exageradamente dramática de um arburto \n\n_Hibiscus rosa-sinensis_",
-    "path": "/photos/nature/hibisco.jpg"
+    "path": "/photos/nature/hibisco.jpg",
+    "tags": [
+      "Flores",
+      "Natureza",
+      "Céu"
+    ]
   },
   {
     "id": 5,
     "title": "Cachorro no carro",
     "description": "Um belo cachorro aproveitando a viagem de carro pra sentir o ventinho no rosto \n\n alerta de fofura",
     "tags": [
-      "animais",
-      "cachorro",
-      "bear"
+      "Animais",
+      "Cachorro"
     ],
     "path": "/photos/animals/bear.gif",
     "filename": "bear.gif"
@@ -44,28 +60,40 @@
     "title": "Canafístula",
     "filename": "canafistula1.png",
     "description": "Arvore canafistula (_Peltophorum dubium_) \n\nna antiga casa onde eu morava",
-    "path": "/photos/nature/canafistula1.jpg"
-  },
-  {
-    "id": 7,
-    "title": "Flores Canafístula",
-    "filename": "canafistula2.jpg",
-    "description": "Foto aproximada das flores da arvore Canafistula (Peltophorum dubium)",
-    "path": "/photos/nature/canafistula2.jpg"
+    "path": "/photos/nature/canafistula1.jpg",
+    "tags": [
+      "Flores",
+      "Natureza",
+      "Céu"
+    ],
+    "groupedPhotos": [
+      {
+        "path": "/photos/nature/canafistula2.jpg",
+        "filename": "canafistula2.jpg"
+      }
+    ]
   },
   {
     "id": 8,
     "title": "Borboleta Laranja",
     "filename": "borboleta1.png",
     "description": "Foto aproximada de uma borboleta que apareceu na casa dos meus pais. \n\n Achei o padrão das asas muito lindo e a coloração laranja era muito forte.  \n\n_Pantherodes pardalaria_",
-    "path": "/photos/nature/borboleta1.jpg"
+    "path": "/photos/nature/borboleta1.jpg",
+    "tags": [
+      "Borboleta",
+      "Animais",
+      "Natureza"
+    ]
   },
   {
     "id": 9,
     "title": "Costela de Adão do Shopping",
     "filename": "costela.jpg",
     "description": "Essa é a minha planta preferida, conhecida popularmente como Costela de Adão tem o nome cientifico de _Monstera Deliciosa_ \n\n _Monstera_ vem do latim e significa **Monstruosa** pelo seu tamanho. _Deliciosa_ é por causa dos seus deliciosos frutos.\n\n Dizem que tem sabor de abacaxi com morango, mas eu nunca provei. \n\n _Monstera Deliciosa_",
-    "path": "/photos/nature/costela.jpg"
+    "path": "/photos/nature/costela.jpg",
+    "tags": [
+      "Natureza"
+    ]
   },
   {
     "id": 10,
@@ -74,7 +102,8 @@
     "description": "Gosto de enquadrar foto das nuvens bem no centro, talvez eu faça uma compilação delas",
     "path": "/photos/sky/ceu1.jpg",
     "tag": [
-      "nuvens"
+      "Núvens",
+      "Céu"
     ]
   },
   {
@@ -82,14 +111,22 @@
     "title": "Vista Catarina Outlet",
     "filename": "horizonte1.png",
     "description": "As vezes eu penso se todo mundo acha o mundo tão bonito quanto eu acho",
-    "path": "/photos/sky/horizonte1.jpg"
+    "path": "/photos/sky/horizonte1.jpg",
+    "tag": [
+      "Núvens",
+      "Céu"
+    ]
   },
   {
     "id": 12,
     "title": "Palmeira",
     "description": "A resolução ta bem ruim, mas eu gostei muito dessa foto pelo contraste do verde e do azul do céu",
     "path": "/photos/nature/palmeira.gif",
-    "filename": "palmeira.gif"
+    "filename": "palmeira.gif",
+    "tags": [
+      "Céu",
+      "Natureza"
+    ]
   },
   {
     "id": 16,
@@ -101,5 +138,75 @@
     ],
     "path": "/photos/nature/Borboleta_camera.jpg",
     "filename": "Borboleta_camera.jpg"
+  },
+  {
+    "id": 17,
+    "filename": "nature/orchids/olho_de_boneca_1.jpg",
+    "title": "Orquidea Olho de Boneca",
+    "description": "Uma foto que tirei da orquidea que floriu na arvore do meu vizinho, achei muito lindo as flores junto com o sol da tarde assim entre as petalas \n\n _Dendrobium nobile_",
+    "tags": [
+      "Natureza",
+      "Orquidea",
+      "Flores"
+    ],
+    "path": "/photos/nature/orchids/olho_de_boneca_1.jpg",
+    "group": "orchideaboneca1",
+    "groupedPhotos": [
+      {
+        "path": "/photos/nature/orchids/olho_de_boneca_2.jpg",
+        "filename": "nature/orchids/olho_de_boneca_2.jpg"
+      },
+      {
+        "path": "/photos/nature/orchids/olho_de_boneca_3.jpg",
+        "filename": "nature/orchids/olho_de_boneca_3.jpg"
+      },
+      {
+        "path": "/photos/nature/orchids/olho_de_boneca_4.jpg",
+        "filename": "nature/orchids/olho_de_boneca_4.jpg"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "filename": "nature/demogorgon_flower.jpg",
+    "title": "Flor Demogorgon",
+    "description": "Essa flor é da planta _Echeveria_ também conhecida como rosa-de-pedra, popularmente. \n\nEssa planta ja morreu aqui em casa mas quando ela floriu eu achei essa flor muito engraçada, consegui capturar e editar a foto do jeito que eu vi a flor, como se fosse um demogorgon, achei que ficou daora demais.",
+    "tags": [
+      "Flores",
+      "Natureza"
+    ],
+    "path": "/photos/nature/demogorgon_flower.jpg"
+  },
+  {
+    "id": 19,
+    "filename": "nature/fake_lavender.jpg",
+    "title": "Sálvia Azul",
+    "description": "Sim, isso na verdade é uma sálvia mais especificamente _Sálvia farinacea_. No dia tinha certeza q era alguma lavanda",
+    "tags": [
+      "Natureza",
+      "Flores"
+    ],
+    "path": "/photos/nature/fake_lavender.jpg"
+  },
+  {
+    "id": 20,
+    "filename": "nature/perfect-love.jpg",
+    "title": "Amor Perfeito",
+    "description": "Uma foto de uma pequena flor chamada \"amor-perfeito\" ou _Viola Wittrockiana_ (Não conhecia esse nome). Tirei em holambra.",
+    "tags": [
+      "Natureza",
+      "Flores"
+    ],
+    "path": "/photos/nature/perfect-love.jpg"
+  },
+  {
+    "id": 21,
+    "filename": "nature/round_cactus.jpg",
+    "title": "Cactus Bola Perfeitinho",
+    "description": "Vi esse cactus em holambra também, imagino q deve demorar uns 15 anos pra ele ficar desse tamanho. Tinha uns maiores mas acabei não tirando foto.",
+    "tags": [
+      "Natureza"
+    ],
+    "path": "/photos/nature/round_cactus.jpg"
   }
 ]

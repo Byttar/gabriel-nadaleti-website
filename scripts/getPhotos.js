@@ -2,38 +2,25 @@ import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
 
-// Search in public/photos instead of src/assets/photos
 const PHOTOS_DIR = path.join(process.cwd(), "public", "photos");
-const OUTPUT_FILE = path.join(process.cwd(), "src", "components", "content", "photos", "data", "photos.json");
-// Cache remains in /scripts
-const CACHE_DIR = path.join(process.cwd(), "scripts", ".cache");
-const CACHE_FILE = path.join(CACHE_DIR, "_loadedPhotos.json");
 
-// Helper to recursively find all image files in a directory, but ignore /posts subfolder
-function getAllPhotos(dir, relative = "") {
-  let results = [];
-  const list = fs.readdirSync(dir);
+const CACHE_FILE = path.join(
+  process.cwd(),
+  "scripts",
+  ".cache",
+  "_loadedPhotos.json"
+);
 
-  list.forEach((file) => {
-    const filePath = path.join(dir, file);
-    const relPath = path.join(relative, file);
-    const stat = fs.statSync(filePath);
-    // Ignore /posts directory at any depth from PHOTOS_DIR
-    if (stat && stat.isDirectory()) {
-      if (file.toLowerCase().includes("posts")) {
-        // Skip /posts folder
-        return;
-      }
-      results = results.concat(getAllPhotos(filePath, relPath));
-    } else if (stat && stat.isFile()) {
-      // Only allow some common image extensions
-      if (/\.(jpe?g|png|gif|webp|bmp|jpeg)$/i.test(file)) {
-        results.push(relPath.replace(/\\/g, "/")); // always forward slashes
-      }
-    }
-  });
-  return results;
-}
+// JSON file containing the actual photo objects.
+const PHOTOS_FILE = path.join(
+  process.cwd(),
+  "src",
+  "components",
+  "content",
+  "photos",
+  "data",
+  "photos.json"
+);
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -42,132 +29,265 @@ const rl = readline.createInterface({
 
 function ask(question) {
   return new Promise((resolve) => {
-    rl.question(question, (answer) => resolve(answer.trim()));
+    rl.question(question, (answer) => {
+      resolve(answer.trim());
+    });
   });
 }
 
-// Helper to prompt for tags, split by comma, trim, filter empty
-async function askTags() {
-  const tagsInput = await ask("Tags (separadas por vírgula): ");
-  return tagsInput
+function parseTags(input) {
+  return input
     .split(",")
-    .map(s => s.trim())
-    .filter(s => s.length > 0);
+    .map((tag) => tag.trim())
+    .filter(Boolean);
 }
 
-// Generate next id for photo based on index in sorted photos array (1-based incremental)
-function getPhotoId(idx) {
-  return idx + 1;
+function normalizePath(filePath) {
+  return filePath.split(path.sep).join("/");
+}
+
+function getPhotoPath(filename) {
+  return `/photos/${normalizePath(filename)}`;
+}
+
+function loadCache() {
+  if (!fs.existsSync(CACHE_FILE)) {
+    console.log("_loadedPhotos.json does not exist. Creating it.");
+    return [];
+  }
+
+  const data = fs.readFileSync(CACHE_FILE, "utf8");
+
+  if (!data.trim()) {
+    return [];
+  }
+
+  const parsed = JSON.parse(data);
+
+  if (!Array.isArray(parsed)) {
+    throw new Error("_loadedPhotos.json must contain an array.");
+  }
+
+  return parsed;
+}
+
+function loadPhotos() {
+  if (!fs.existsSync(PHOTOS_FILE)) {
+    return [];
+  }
+
+  const data = fs.readFileSync(PHOTOS_FILE, "utf8");
+
+  if (!data.trim()) {
+    return [];
+  }
+
+  const parsed = JSON.parse(data);
+
+  if (!Array.isArray(parsed)) {
+    throw new Error("photos.json must contain an array.");
+  }
+
+  return parsed;
+}
+
+function getPhotoFiles(directory, relativeDirectory = "") {
+  const entries = fs.readdirSync(directory, {
+    withFileTypes: true,
+  });
+
+  const files = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(directory, entry.name);
+    const relativePath = path.join(relativeDirectory, entry.name);
+
+    // Ignore /public/photos/posts completely.
+    if (
+      entry.isDirectory() &&
+      relativePath.split(path.sep)[0] === "posts"
+    ) {
+      continue;
+    }
+
+    if (entry.isDirectory()) {
+      files.push(...getPhotoFiles(fullPath, relativePath));
+      continue;
+    }
+
+    if (entry.isFile()) {
+      files.push(relativePath);
+    }
+  }
+
+  return files;
+}
+
+function getNextId(photos) {
+  if (photos.length === 0) {
+    return 1;
+  }
+
+  const ids = photos
+    .map((photo) => Number(photo.id))
+    .filter((id) => Number.isInteger(id));
+
+  return ids.length > 0 ? Math.max(...ids) + 1 : 1;
+}
+
+async function createPhoto(filename, id, group = "") {
+  const title = await ask("Title: ");
+  const description = await ask("Description: ");
+  const tagsInput = await ask("Tags (separated by comma): ");
+
+  const photo = {
+    id,
+    filename,
+    title,
+    description,
+    tags: parseTags(tagsInput),
+    path: getPhotoPath(filename),
+  };
+
+  // Only add the group key when a group was provided.
+  if (group) {
+    photo.group = group;
+  }
+
+  return photo;
 }
 
 async function main() {
+  console.log("Scanning photos...");
+
   if (!fs.existsSync(PHOTOS_DIR)) {
-    console.error("Photos directory not found:", PHOTOS_DIR);
-    rl.close();
-    process.exit(1);
+    throw new Error(
+      `Photos directory does not exist:\n${PHOTOS_DIR}`
+    );
   }
 
-  // Make sure output dir exists
-  const outDir = path.dirname(OUTPUT_FILE);
-  if (!fs.existsSync(outDir)) {
-    fs.mkdirSync(outDir, { recursive: true });
+  const loadedPhotos = loadCache();
+  const photos = loadPhotos();
+
+  const files = getPhotoFiles(PHOTOS_DIR);
+
+  const normalizedFiles = files.map(normalizePath);
+
+  const loadedSet = new Set(
+    loadedPhotos.map(normalizePath)
+  );
+
+  const missingFiles = normalizedFiles.filter(
+    (file) => !loadedSet.has(file)
+  );
+
+  console.log(`Found ${normalizedFiles.length} file(s).`);
+  console.log(`Found ${loadedPhotos.length} file(s) in cache.`);
+  console.log(`Found ${missingFiles.length} new file(s).`);
+
+  if (missingFiles.length === 0) {
+    console.log("No new photos found.");
+    return;
   }
 
-  // Make sure cache dir exists
-  if (!fs.existsSync(CACHE_DIR)) {
-    fs.mkdirSync(CACHE_DIR, { recursive: true });
-  }
+  let nextId = getNextId(photos);
+  let changedPhotos = false;
 
-  // Load cache
-  let loadedPhotos = [];
-  if (fs.existsSync(CACHE_FILE)) {
-    try {
-      loadedPhotos = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
-      if (!Array.isArray(loadedPhotos)) loadedPhotos = [];
-    } catch {
-      loadedPhotos = [];
-    }
-  }
+  for (const filename of missingFiles) {
+    console.log(`\nA new file has been found: ${filename}`);
 
-  // Gather all photo relative paths, sort for deterministic id assignment, ignoring /posts
-  const photos = getAllPhotos(PHOTOS_DIR);
-  photos.sort();
+    // Group is always the first question.
+    const group = await ask("Group (optional): ");
 
-  if (photos.length === 0) {
-    console.log("Nenhuma foto encontrada em", PHOTOS_DIR);
-    rl.close();
-    process.exit(0);
-  }
+    const photoPath = getPhotoPath(filename);
 
-  let addCount = 0;
-  // Set for O(1) lookups on loaded/cached photos
-  const loadedSet = new Set(loadedPhotos);
+    // Find an existing photo that represents the requested group.
+    const existingGroup = group
+      ? photos.find((photo) => photo.group === group)
+      : null;
 
-  // Try to load existing photos.json
-  let currentPhotos = [];
-  if (fs.existsSync(OUTPUT_FILE)) {
-    try {
-      currentPhotos = JSON.parse(fs.readFileSync(OUTPUT_FILE, "utf8"));
-      if (!Array.isArray(currentPhotos)) {
-        console.warn("photos.json não contém um array. O arquivo será reparado.");
-        currentPhotos = [];
+    if (existingGroup) {
+      if (!Array.isArray(existingGroup.groupedPhotos)) {
+        existingGroup.groupedPhotos = [];
       }
-    } catch {
-      console.warn("photos.json inválido ou não pôde ser lido. Será recriado.");
-      currentPhotos = [];
-    }
-  }
 
-  for (let i = 0; i < photos.length; ++i) {
-    const photo = photos[i];
-    const id = getPhotoId(i + loadedPhotos.length - 1);
-    // The photoPath should be like "/public/photos/..."
-    const photoPath = `/public/photos/${photo}`;
-    const filename = photo.split("/").pop() || path.basename(photo);
-
-    let record = null;
-
-    if (!loadedSet.has(photo)) {
-      // Not in cache, need to ask for data
-      console.log(`\nArquivo encontrado: ${photo}`);
-      const title = await ask("Título da imagem: ");
-      const description = await ask("Descrição curta: ");
-      const tags = await askTags();
-      record = {
-        id,
-        title,
-        description,
-        tags,
+      const groupedPhoto = {
         path: photoPath,
-        filename, // includes extension
+        filename,
       };
-      loadedPhotos.push(photo);
-      addCount++;
 
-      // Append only the new record to the array in photos.json
-      currentPhotos.push(record);
+      // Prevent the same file from being added twice.
+      const alreadyExists = existingGroup.groupedPhotos.some(
+        (photo) => photo.filename === filename
+      );
 
-      // Save updated photos.json immediately after each addition
-      fs.writeFileSync(OUTPUT_FILE, JSON.stringify(currentPhotos, null, 2), "utf8");
+      if (!alreadyExists) {
+        existingGroup.groupedPhotos.push(groupedPhoto);
+      }
+
+      console.log(
+        `Added ${filename} to group "${group}".`
+      );
+
+      changedPhotos = true;
     } else {
-      // Already in cache, just reuse the path and filename, prompt for everything again (since no previousRecords)
-      // Optionally, you can skip and not include old cached photos in output, but let's prompt again to ensure data integrity
-      console.log(`\nArquivo já está no cache: ${photo}`);
-      continue;
+      // No group was provided, or the requested group does not exist.
+      const photo = await createPhoto(
+        filename,
+        nextId,
+        group
+      );
+
+      photos.push(photo);
+
+      nextId++;
+      changedPhotos = true;
     }
+
+    // Mark the file as processed in the cache.
+    loadedSet.add(filename);
+    loadedPhotos.push(filename);
   }
 
-  // Save cache of loaded photos
-  fs.writeFileSync(CACHE_FILE, JSON.stringify(loadedPhotos, null, 2), "utf8");
-  console.log(`\nDados das fotos salvos em: ${OUTPUT_FILE}`);
-  if (addCount === 0) {
-    console.log(`Nenhuma nova foto para adicionar. Todas já estavam no cache.`);
+  // Make sure the cache directory exists.
+  fs.mkdirSync(path.dirname(CACHE_FILE), {
+    recursive: true,
+  });
+
+  // Save loaded files cache.
+  fs.writeFileSync(
+    CACHE_FILE,
+    JSON.stringify(loadedPhotos, null, 2) + "\n",
+    "utf8"
+  );
+
+  // Save actual photo data.
+  if (changedPhotos) {
+    fs.mkdirSync(path.dirname(PHOTOS_FILE), {
+      recursive: true,
+    });
+
+    fs.writeFileSync(
+      PHOTOS_FILE,
+      JSON.stringify(photos, null, 2) + "\n",
+      "utf8"
+    );
   }
-  rl.close();
+
+  console.log(
+    `\nProcessed ${missingFiles.length} new file(s).`
+  );
+
+  console.log(`Updated cache: ${CACHE_FILE}`);
+  console.log(`Updated photos: ${PHOTOS_FILE}`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  rl.close();
-  process.exit(1);
-});
+main()
+  .catch((error) => {
+    console.error("\nError:");
+    console.error(error.message);
+    process.exitCode = 1;
+  })
+  .finally(() => {
+    rl.close();
+  });
