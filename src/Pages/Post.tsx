@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import ReactMarkdown from "react-markdown";
 import Code from "../components/code";
 import SessionNav from "../components/sessionNav";
-import posts from "../components/content/posts/data/posts.json";
+import posts from "../assets/data/posts.json";
 import { postSlug } from "../utils/postSlug";
 
 const markdownFiles = import.meta.glob<string>("../assets/posts/*.md", {

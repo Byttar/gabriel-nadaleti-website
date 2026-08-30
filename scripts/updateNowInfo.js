@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import path from "node:path";
 import readline from "node:readline";
 
 const rl = readline.createInterface({
@@ -53,13 +54,21 @@ async function main() {
     }
   }
 
+  // New path and filename for data.json
+  const outputDir = path.join(process.cwd(), "src", "assets", "data");
+  const outputFile = path.join(outputDir, "currentInfo.json");
+
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+
   fs.writeFileSync(
-    "./src/components/content/currentInfo/data.json",
+    outputFile,
     JSON.stringify(data, null, 2),
     "utf8"
   );
 
-  console.log("\nArquivo data.json atualizado com sucesso!");
+  console.log("\nArquivo currentInfo.json atualizado com sucesso!");
 
   rl.close();
 }

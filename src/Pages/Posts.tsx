@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import posts from "../components/content/posts/data/posts.json";
+import posts from "../assets/data/posts.json";
 import { postSlug } from "../utils/postSlug";
 import SessionNav from "../components/sessionNav";
 import Code from "../components/code";

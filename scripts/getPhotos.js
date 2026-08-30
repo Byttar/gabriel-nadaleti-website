@@ -11,13 +11,11 @@ const CACHE_FILE = path.join(
   "_loadedPhotos.json"
 );
 
-// JSON file containing the actual photo objects.
+// Updated location for photos.json: /src/assets/data/photos.json
 const PHOTOS_FILE = path.join(
   process.cwd(),
   "src",
-  "components",
-  "content",
-  "photos",
+  "assets",
   "data",
   "photos.json"
 );

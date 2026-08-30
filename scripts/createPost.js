@@ -85,7 +85,7 @@ async function main() {
   };
 
   // Dir to save (create if doesn't exist)
-  const postsDir = path.join(process.cwd(), "src", "components", "content", "posts", "data");
+  const postsDir = path.join(process.cwd(), "src", "assets", "data");
   if (!fs.existsSync(postsDir)) {
     fs.mkdirSync(postsDir, { recursive: true });
   }

@@ -1,7 +1,7 @@
 // this page was all generated using the free tier of the inline edit prompt bar from Cursor
 import React, { useEffect, useMemo, useState } from "react";
 import Code from "../components/code";
-import photos from "../components/content/photos/data/photos.json";
+import photos from "../assets/data/photos.json";
 import SessionNav from "../components/sessionNav";
 import { useNavigate, useParams } from "react-router";
 import { assetUrl } from "../utils/loadAsset";

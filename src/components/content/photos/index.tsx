@@ -1,6 +1,6 @@
 import React from "react";
 import Code from "../../code";
-import photos from "./data/photos.json"
+import photos from "../../../assets/data/photos.json";
 import SessionNav from "../../sessionNav";
 import { Link } from "react-router";
 import { assetUrl } from "../../../utils/loadAsset";

@@ -4,7 +4,7 @@ import Code from "../../code";
 import SessionNav from "../../sessionNav";
 import { postSlug } from "../../../utils/postSlug";
 
-import posts from "./data/posts.json";
+import posts from "../../../assets/data/posts.json";
 import { isRecentPost } from "../../../utils/isRecentPost";
 
 type PostProps = {

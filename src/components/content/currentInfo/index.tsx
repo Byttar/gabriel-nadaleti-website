@@ -1,6 +1,6 @@
 import React from "react";
 import Code from "../../code";
-import Info from "./data.json";
+import Info from "../../../assets/data/currentInfo.json";
 
 const Item = ({title, sub}: {title: string, sub: string}) => (
     <li>
