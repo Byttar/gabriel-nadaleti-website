@@ -1,5 +1,5 @@
 // this page was all generated using the free tier of the inline edit prompt bar from Cursor
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import Code from "../components/code";
 import photos from "../components/content/photos/data/photos.json";
 import SessionNav from "../components/sessionNav";
@@ -12,6 +12,12 @@ const modalAnim = "animate-fade-in-scale";
 const PLACEHOLDER_TITLE = "Sem título";
 const PLACEHOLDER_DESCRIPTION =
   "Esta foto ainda não tem uma descrição. Em breve, mais detalhes sobre o momento capturado aqui.";
+
+// Memoization helper for getting photo description content
+function getDescriptionContent(photo: typeof photos[0] | null): string {
+  if (!photo) return PLACEHOLDER_DESCRIPTION;
+  return photo.description || PLACEHOLDER_DESCRIPTION;
+}
 
 function parseDescriptionFormat(desc: string): React.ReactNode {
   if (!desc) return null;
@@ -78,6 +84,10 @@ const PhotosPage: React.FC = () => {
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const navigate = useNavigate();
   const { photoid } = useParams<{ photoid: string }>();
+
+  // Memoized description content for TypingEffect, so it only types once per photo change
+  const descriptionString = useMemo(() => getDescriptionContent(selectedPhoto), [selectedPhoto?.id]);
+  const parsedDescription = useMemo(() => parseDescriptionFormat(descriptionString), [descriptionString]);
 
   // Get all unique tags from all photos
   const allTags: string[] = useMemo(() => {
@@ -281,8 +291,8 @@ const PhotosPage: React.FC = () => {
                 {selectedPhoto.title || PLACEHOLDER_TITLE}
               </h2>
               <p id="photo-content" className="w-full xs:h-25 xs:min-w-auto md:min-w-[340px] md:h-auto whitespace-pre-line text-stone-400 text-sm leading-relaxed max-h-40 md:p-0 md:border-0 rounded-md border-dashed border border-primarydim p-4 md:max-h-136.25 overflow-y-auto">
-                <TypingEffect speed={10}>
-                  {parseDescriptionFormat(selectedPhoto.description || PLACEHOLDER_DESCRIPTION)}
+                <TypingEffect speed={10} key={selectedPhoto?.id}>
+                  {parsedDescription}
                 </TypingEffect>
               </p>
               {/* Tags in modal */}

@@ -1,6 +1,7 @@
 import React, {
   cloneElement,
   isValidElement,
+  type PropsWithChildren,
   type ReactNode,
 } from "react";
 import { useEffect, useState } from "react";
@@ -30,7 +31,7 @@ function getTextLength(node: ReactNode): number {
   }
 
   if (isValidElement(node)) {
-    return getTextLength(node.props.children);
+    return getTextLength((node.props as PropsWithChildren<typeof node.props>).children);
   }
 
   return 0;
@@ -66,7 +67,7 @@ function renderTyped(
   }
 
   if (isValidElement(node)) {
-    const children = node.props.children;
+    const children = (node.props as PropsWithChildren<typeof node.props>).children;
 
     if (children === undefined) {
       return node;
@@ -86,8 +87,7 @@ export function TypingEffect({
   children,
   speed = 30,
   cursor = true,
-  cursorCharacter = "|",
-  cursorClassName = "",
+  cursorCharacter = "|"
 }: TypingEffectProps) {
   const totalCharacters = getTextLength(children);
 
