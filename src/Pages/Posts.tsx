@@ -5,6 +5,8 @@ import SessionNav from "../components/sessionNav";
 import Code from "../components/code";
 import { Link } from "react-router";
 import { isRecentPost } from "../utils/isRecentPost";
+import Type from "../components/type";
+import { useTypingPersistentTitle } from "../hooks/usePersistText";
 
 function getAllTags(myPosts: typeof posts) {
   const allTags = myPosts.flatMap((post) => post.tags ?? []);
@@ -41,15 +43,19 @@ const PostsPage: React.FC = () => {
     });
   }, [search, selectedTag]);
 
+  const [title] = useTypingPersistentTitle("Posts")
+
+
   return (
     <main className="w-full mt-6 gap-4 flex flex-col">
       <Code script="./Posts" />
       <h1 className="font-bold text-white text-2xl sm:text-3xl mb-4 pl-0">
-        <span className="font-semibold">Posts</span>
+        {title}
       </h1>
-      <p className="text-stone-400 text-sm -mt-4 mb-5">
-        Uma lista de todos os posts.
-      </p>
+      <div className="flex gap-2">
+      <Type speed={10} text="Uma lista com todos os posts..." className="text-stone-400 text-sm -mt-4 mb-5" />
+      <Type speed={10} cursor={false} delay={2500} text="Só isso mesmo" className="text-stone-400 text-sm -mt-4 mb-5" />
+      </div>
       {/* Simple search bar */}
       <div className="flex flex-col gap-2 mb-2">
         <input

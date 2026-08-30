@@ -6,6 +6,8 @@ import SessionNav from "../components/sessionNav";
 import { useNavigate, useParams } from "react-router";
 import { assetUrl } from "../utils/loadAsset";
 import { TypingEffect } from "../components/typeReactNode";
+import Type from "../components/type";
+import { useTypingPersistentTitle } from "../hooks/usePersistText";
 
 const modalAnim = "animate-fade-in-scale";
 
@@ -196,6 +198,8 @@ const PhotosPage: React.FC = () => {
     }
   }
 
+  const [title] = useTypingPersistentTitle("Minha Galeria");
+
   return (
     <main className="w-full mt-6 gap-4 flex flex-col">
       <style>{`
@@ -214,11 +218,9 @@ const PhotosPage: React.FC = () => {
       <Code script="./Photos" />
       <div className="">
         <h1 className="font-bold text-white text-2xl sm:text-3xl mb-4 pl-0">
-          <span className="font-semibold">Todas as Fotos</span>
+          {title}
         </h1>
-        <p className="text-stone-400 text-sm -mt-4 mb-5 max-w-2xl">
-          Uma galeria com todas as fotos publicadas por Gabriel Nadaleti.
-        </p>
+        <Type delay={500} speed={20} text="Uma galeria com todas as minhas fotos, mostrando um pouco do meu ponto de vista. Pra mim, existe muita beleza no mundo, você só precisa estar disposto a enxergar" className="inline-block text-stone-400 text-sm mb-5 max-w-2xl" />
         {/* Tag filter */}
         {allTags.length > 0 && (
           <div className="mb-6 flex flex-wrap gap-2">

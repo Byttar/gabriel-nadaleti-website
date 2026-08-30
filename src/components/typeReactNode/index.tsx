@@ -3,6 +3,7 @@ import React, {
   isValidElement,
   type PropsWithChildren,
   type ReactNode,
+  useMemo,
 } from "react";
 import { useEffect, useState } from "react";
 
@@ -87,9 +88,10 @@ export function TypingEffect({
   children,
   speed = 30,
   cursor = true,
-  cursorCharacter = "|"
+  cursorCharacter = "|",
+  cursorClassName
 }: TypingEffectProps) {
-  const totalCharacters = getTextLength(children);
+  const totalCharacters = useMemo(() => getTextLength(children), [children]);
 
   const [visibleCharacters, setVisibleCharacters] = useState(0);
 
@@ -121,14 +123,19 @@ export function TypingEffect({
     };
   }, [children, speed, totalCharacters]);
 
-  const counter = { value: 0 };
+  // Memoize the rendered typed output. Only recompute if `children` or `visibleCharacters` changes.
+  const rendered = useMemo(() => {
+    const counter = { value: 0 };
+    return renderTyped(children, visibleCharacters, counter);
+    // children: can be tree, but TypeScript/React should support this as dependency
+    // visibleCharacters: state, triggers update
+  }, [children, visibleCharacters]);
 
   return (
     <>
-      {renderTyped(children, visibleCharacters, counter)}
-
+      {rendered}
       {cursor && (
-        <span className={"animate-type"}>
+        <span className={cursorClassName ?? "animate-type"}>
           {cursorCharacter}
         </span>
       )}

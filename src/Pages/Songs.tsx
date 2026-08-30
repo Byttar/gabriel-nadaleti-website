@@ -4,6 +4,8 @@ import SessionNav from "../components/sessionNav";
 import Visual from "../components/audioplayer/visual"; // Import the visual component
 import { useLocation, useNavigate } from "react-router";
 import { assetUrl } from "../utils/loadAsset";
+import Type from "../components/type";
+import { useTypingPersistentTitle } from "../hooks/usePersistText";
 
 const songs = [
   {
@@ -116,15 +118,17 @@ const SongsPage: React.FC = () => {
     }
   };
 
+  const [title] = useTypingPersistentTitle("Minhas Músicas");
+
   return (
     <main className="w-full mt-6 gap-4 flex flex-col">
       <Code script="./Songs" />
       <h1 className="font-bold text-white text-2xl sm:text-3xl mb-4">
-        <span className="font-semibold">Minhas Músicas</span>
+        {title}
       </h1>
-      <p className="text-stone-400 text-sm -mt-4 mb-5 ">
-        Algumas músicas (talvez uma), que eu produzi. As vezes passa um tempo e eu começo a odia-las <br/>
-      </p>
+      <Type speed={10} text="Algumas músicas (talvez uma), que eu produzi. As vezes passa um tempo e eu começo a odia-las" className="text-stone-400 text-sm -mt-4 mb-5">
+
+      </Type>
       <div className="flex flex-col-reverse md:flex-row justify-between border-b border-dashed border-stone-800 pb-6">
         <div className="flex md:mt-0 mt-4 flex-col gap-4 w-full max-w-xs">
           {songs.map((song, idx) => (
