@@ -14,7 +14,7 @@ const CurrentInfo: React.FC = () => {
   return (
     <section className="my-8">
       <Code script="./now"/>
-      <ul className="w-full flex-col mt-4 animate-bordertype py-4 pb-8 flex text-stone-400 text-sm space-y-1">
+      <ul className="bg-[#151515] w-full flex-col mt-4 animate-bordertype py-4 px-5 pb-8 flex text-stone-400 text-sm space-y-1">
         <p className="text-primary mb-4">//<span> atualmente</span></p>
         <div className="flex flex-col gap-8 md:gap-0 md:flex-row w-full justify-between">
           <Item title={"Ouvindo"} sub={Info.now.listening}/>
