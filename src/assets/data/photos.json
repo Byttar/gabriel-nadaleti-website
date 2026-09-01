@@ -101,7 +101,7 @@
     "filename": "ceu1.png",
     "description": "Gosto de enquadrar foto das nuvens bem no centro, talvez eu faça uma compilação delas",
     "path": "/photos/sky/ceu1.jpg",
-    "tag": [
+    "tags": [
       "Núvens",
       "Céu"
     ]
@@ -112,7 +112,7 @@
     "filename": "horizonte1.png",
     "description": "As vezes eu penso se todo mundo acha o mundo tão bonito quanto eu acho",
     "path": "/photos/sky/horizonte1.jpg",
-    "tag": [
+    "tags": [
       "Núvens",
       "Céu"
     ]
@@ -134,6 +134,7 @@
     "description": "Tirei essa foto no jardim botanico de Curitiba usando uma camera da sony. \n\n Acho muito legal como a camera digital captura as fotos de uma forma muito diferente das cameras dos smartphones. \n\n Acho que a gente ficou acostumado demais com o pós-processamento do celular",
     "tags": [
       "Natureza",
+      "Animais",
       "Borboleta"
     ],
     "path": "/photos/nature/Borboleta_camera.jpg",
@@ -208,5 +209,48 @@
       "Natureza"
     ],
     "path": "/photos/nature/round_cactus.jpg"
+  },
+  {
+    "id": 22,
+    "filename": "animals/teemo.jpg",
+    "title": "Cachorro feliz 2",
+    "description": "Uma foto de um belo cachorro aproveitando o sol de um dia azul",
+    "tags": [
+      "Animais",
+      "Cachorro"
+    ],
+    "path": "/photos/animals/teemo.jpg"
+  },
+  {
+    "id": 23,
+    "filename": "buildings/predio1.jpg",
+    "title": "Pŕedio Argentina",
+    "description": "Um prédio que vi na argentina",
+    "tags": [
+      "Predios",
+      "Céu"
+    ],
+    "path": "/photos/buildings/predio1.jpg"
+  },
+  {
+    "id": 24,
+    "filename": "nature/neve-da-montanha.jpg",
+    "title": "Neve da Montanha",
+    "description": "Essa é uma arvore que tem muitas inflorescências com brácteas brancas que dão esse efeito que parece neve extremamente chamativo, com certeza se ver uma por ai você irá se impressionar, se eu achar uma adulta por ai eu tiro uma foto. \n\n _Euphorbia marginata_",
+    "tags": [
+      "Natureza"
+    ],
+    "path": "/photos/nature/neve-da-montanha.jpg"
+  },
+  {
+    "id": 25,
+    "filename": "nature/tibouchina.jpg",
+    "title": "Tibouchina",
+    "description": "Uma flor que vi por ai, o nome popular é _Flor-de-quaresma_ mas o nome científico é _Tibouchina_. \n\n Achei ela muito linda, não é tão comum ver um roxo tão intenso assim na natureza",
+    "tags": [
+      "Flores",
+      "Natureza"
+    ],
+    "path": "/photos/nature/tibouchina.jpg"
   }
 ]

@@ -9,7 +9,11 @@ import Type from "../components/type";
 import { useTypingPersistentTitle } from "../hooks/usePersistText";
 
 function getAllTags(myPosts: typeof posts) {
+  // Only include "novo" in tag selector if there is at least one recent post
   const allTags = myPosts.flatMap((post) => post.tags ?? []);
+  if (myPosts.some((post) => isRecentPost(post.date))) {
+    allTags.push("Novo");
+  }
   return Array.from(new Set(allTags));
 }
 
@@ -21,16 +25,19 @@ const PostsPage: React.FC = () => {
 
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {
-      // "novo" pseudo tag for recent posts
       const postIsRecent = isRecentPost(post.date);
+      // Don't mutate post.tags, create a derived array for searching
       const postTags = [...(post.tags ?? [])];
       if (postIsRecent && !postTags.includes("novo")) {
-        postTags.push("novo");
+        postTags.push("Novo");
       }
 
-      const tagMatch =
-        !selectedTag ||
-        postTags.includes(selectedTag);
+      // Only match with "novo" if selectedTag is "novo" and postIsRecent
+      const tagMatch = !selectedTag
+        ? true
+        : selectedTag === "novo"
+        ? postIsRecent
+        : postTags.includes(selectedTag);
 
       const s = search.toLowerCase().trim();
       const searchMatch =
@@ -43,8 +50,7 @@ const PostsPage: React.FC = () => {
     });
   }, [search, selectedTag]);
 
-  const [title] = useTypingPersistentTitle("Posts")
-
+  const [title] = useTypingPersistentTitle("Posts");
 
   return (
     <main className="w-full mt-6 gap-4 flex flex-col">
@@ -53,8 +59,8 @@ const PostsPage: React.FC = () => {
         {title}
       </h1>
       <div className="flex gap-2">
-      <Type speed={10} text="Uma lista com todos os posts..." className="text-stone-400 text-sm -mt-4 mb-5" />
-      <Type speed={10} cursor={false} delay={2500} text="Só isso mesmo" className="text-stone-400 text-sm -mt-4 mb-5" />
+        <Type speed={10} text="Uma lista com todos os posts..." className="text-stone-400 text-sm -mt-4 mb-5" />
+        <Type speed={10} cursor={false} delay={2500} text="Só isso mesmo" className="text-stone-400 text-sm -mt-4 mb-5" />
       </div>
       {/* Simple search bar */}
       <div className="flex flex-col gap-2 mb-2">
@@ -100,7 +106,12 @@ const PostsPage: React.FC = () => {
             .slice() // copy to avoid mutating filteredPosts in place
             .reverse()
             .map((post) => {
+              const postIsRecent = isRecentPost(post.date);
+              // Only show "novo" in label if post is recent
               const postTags = [...(post.tags ?? [])];
+              if (postIsRecent && !postTags.includes("novo")) {
+                postTags.push("novo");
+              }
 
               return (
                 <Link
@@ -111,18 +122,25 @@ const PostsPage: React.FC = () => {
                   <span className="text-xs text-stone-500 tracking-widest block mb-1">{post.date}</span>
                   <h2 className="text-lg font-bold text-white mb-1">
                     {post.title}
-                    <span className="inline-block sm:absolute static ml-0 xs:ml-2 sm:ml-4 top-2 right-3 border-primary border border-dashed px-2 rounded text-xs">Novo</span>
+                    {postIsRecent && (
+                      <span className="inline-block sm:absolute static ml-0 xs:ml-2 sm:ml-4 top-2 right-3 border-primary border border-dashed px-2 rounded text-xs">
+                        Novo
+                      </span>
+                    )}
                   </h2>
                   <p className="text-stone-400 text-sm mb-2">{post.description}</p>
                   <div className="flex flex-row gap-2">
-                    {postTags.map((tag) =>
-                      <span
-                        key={tag}
-                        className="bg-stone-900 text-stone-500 rounded px-2 py-1 text-xs border border-stone-800"
-                      >
-                        {tag}
-                      </span>
-                    )}
+                    {postTags
+                      // Don't render "novo" as a visual tag -- only as a label at the top.
+                      .filter((tag) => tag !== "novo")
+                      .map((tag) =>
+                        <span
+                          key={tag}
+                          className="bg-stone-900 text-stone-500 rounded px-2 py-1 text-xs border border-stone-800"
+                        >
+                          {tag}
+                        </span>
+                      )}
                   </div>
                 </Link>
               );
