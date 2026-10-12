@@ -14,7 +14,7 @@ const randomItems = [
   "Um jogo que estive jogando recentemente",
   "Oque quero comprar no futuro próximo",
   "A música presa na minha cabeça",
-  "Uma coisa que e me arrependi",
+  "Uma coisa comprei e me arrependi",
   "Um pensamento aleatório",
   "Meu jogo de DS favorito",
   "Meu tempero favorito",
