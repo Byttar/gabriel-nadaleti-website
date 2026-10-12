@@ -16,6 +16,10 @@ const randomItems = [
   "A música presa na minha cabeça",
   "Uma coisa que e me arrependi",
   "Um pensamento aleatório",
+  "Meu jogo de DS favorito",
+  "Meu tempero favorito",
+  "Minha cor favorita",
+  "Que tipo de presente me faz feliz"
 ];
 
 const quickResponses = [
@@ -24,6 +28,10 @@ const quickResponses = [
   "The Vamps - Somebody To You",
   "Um controle que conecta no celular via USB-C",
   "Você é quem seus sentimentos te fazem ser?",
+  "Tony Hawk - Proving Ground (DS)",
+  "Manjericão com certeza",
+  "Amarelo",
+  "Não gosto muito de ganhar presentes, mas se fizer algo artesanal eu vou amar"
 ];
 
 const PICK_COUNT = 5;

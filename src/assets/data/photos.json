@@ -14,7 +14,7 @@
     "id": 2,
     "title": "Flor de Dracena",
     "filename": "dracena.jpg",
-    "description": "Foto aproximada das inflorescências de uma Dracena Vermelha.\n\n Aqui no brasil vejo Dracenas em todo lugar, acho que é porque ela é ornamental e provavelmente sobreviveria a uma catastrofe nuclear. \n\n_Cordyline fruticosa_",
+    "description": "Foto aproximada das inflorescências de uma Dracena Vermelha.\n\n Aqui no Brasil vejo Dracenas em todo lugar, acho que é porque ela é ornamental e provavelmente sobreviveria a uma catastrofe nuclear. \n\n_Cordyline fruticosa_",
     "path": "/photos/macro/dracena.jpg",
     "tags": [
       "Flores",
@@ -252,5 +252,98 @@
       "Natureza"
     ],
     "path": "/photos/nature/tibouchina.jpg"
+  },
+  {
+    "id": 26,
+    "filename": "nature/orchids/Phalænopsis1.jpg",
+    "title": "Phalænopsis 1",
+    "description": "Essa é a orchidea mais popular no brasil",
+    "tags": [
+      "Orquidea"
+    ],
+    "path": "/photos/nature/orchids/Phalænopsis1.jpg",
+    "group": "phalenopsis1",
+    "groupedPhotos": [
+      {
+        "path": "/photos/nature/orchids/Phalænopsis2.jpg",
+        "filename": "nature/orchids/Phalænopsis2.jpg"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "filename": "random/miyoo.jpg",
+    "title": "Miyoo Mini+",
+    "description": "Esse é meu portatil favorito do momento, nele eu jogo SNES, GBA/GB principalmente. \n\n Os botões são muito confortáveis, pra mim é o melhor console portatil na faixa dos 300 reais, se você não liga pra jogos de DS porque ele não roda sem dropar uns frames e pra mim isso deixa o jogo injogável. \n\n Uma coisa muito legal é que ele é customizavel, eu mesmo sem experiência alguma ja abri ele pra arrumar um botão que afundou e junto com isso acabei comprando 5 reposições da membrana de silicone caso eu venha a ter problemas futuros, acho que ele é praticamente indestrutível.",
+    "tags": [
+      "Console",
+      "Games"
+    ],
+    "path": "/photos/random/miyoo.jpg"
+  },
+  {
+    "id": 29,
+    "filename": "buildings/20260903_162556.jpg",
+    "title": "Predios com Céu ao fundo",
+    "description": "Esse são os predios da minha casa, eu fico admirando, eu acho que tem algo mágico em olhar as construções desse ponto de vista, é algo sobre o contraste do céu e os cantos pontudos, fica tão bonto.",
+    "tags": [
+      "Prédio",
+      "Céu"
+    ],
+    "path": "/photos/buildings/20260903_162556.jpg"
+  },
+  {
+    "id": 30,
+    "filename": "nature/agapanthus.jpg",
+    "title": "Agapanthus 1",
+    "description": "Flor de Agapanto, essa planta esta em todos os lugares, começe a reparar. \n\n Quando eu notei a existência dessa planta eu imaginei que ela uma espécie invasora, afinal, olha o tanto de flor que ela produz. \n\n Ela é invasora sim, mas não no brasil, como eu pensei, dependendo do clima, tipo na Australia, essa planta se adapta extremamente bem e é considerada gravemente invasora. Aqui no Brasil é só mais uma planta de shopping mesmo. \n\n _Agapanthus africanus_",
+    "tags": [
+      "Flores",
+      "Natureza"
+    ],
+    "path": "/photos/nature/agapanthus.jpg",
+    "group": "agapanthus",
+    "groupedPhotos": [
+      {
+        "path": "/photos/nature/agapanthus2.jpg",
+        "filename": "nature/agapanthus2.jpg"
+      },
+      {
+        "path": "/photos/nature/agapanthus3.jpg",
+        "filename": "nature/agapanthus3.jpg"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "filename": "nature/cana_da_india.jpg",
+    "title": "Cana da India",
+    "description": "Eu tirei essa foto com muita certeza que era uma mamona, mas pelo que o google me disse essa é uma cana-da-india, que surpreendentemente é uma PANC (Planta Alimentícia Não Convêncional), ou seja, você pode comer, mas não é muito comum. \n\n Sempre que eu vejo coisas assim crescendo na calçada eu penso em como eu sou grato por poder ver o mundo pelo meus olhos, a beleza desse mundo parece que passa despercebida. \n\n PS: tem uma abelha morta na foto, eu acho que ela foi capturado por uma aranha 🕷️ \n\n _Canna Indica_",
+    "tags": [
+      "Natureza",
+      "Fruto"
+    ],
+    "path": "/photos/nature/cana_da_india.jpg"
+  },
+  {
+    "id": 32,
+    "filename": "nature/dietes_grandiflora.jpg",
+    "title": "Dietes Grandiflora",
+    "description": "Essa é uma flor muito comum na jardinagem, também conhecida como Iris-de-fada (Acho que é porque lembra a planta Falsa-iris). \n\n Eu achei ela bem diferente das fotos do Google mas eu acho que é apenas a natureza fazendo seu trabalho de causar mutações genéticas nas espécies. \n\n Se quer uma planta que produz flores facilmente e é indestrutivel, escolha essa \n\n _Dietes grandiflora_z ",
+    "tags": [
+      "Flor",
+      "Natureza"
+    ],
+    "path": "/photos/nature/dietes_grandiflora.jpg"
+  },
+  {
+    "id": 33,
+    "filename": "sky/casa1.jpg",
+    "title": "Foto Excessivamente dramática do Céu",
+    "description": "Essa foto eu tirei num dia com muitas núvens, oque mais me chamou a atenção pra tirar essa foto foram os raios solares entre as núvens, uma coisa meio \"Deus existe e esta em todas as coisas\".",
+    "tags": [
+      "Céu"
+    ],
+    "path": "/photos/sky/casa1.jpg"
   }
 ]
